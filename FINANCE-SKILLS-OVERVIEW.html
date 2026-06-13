@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Skills — 全景能力图谱</title>
+<style>
+:root {
+  --bg: #0d0d0f; --surface: #161618; --surface2: #1e1e22; --surface3: #252529;
+  --border: #2a2a2e; --border2: #333338;
+  --text: #e8e8ed; --muted: #8888a0; --faint: #555566;
+  --accent: #6366f1; --accent2: #22d3ee; --accent3: #818cf8;
+  --green: #4ade80; --amber: #fbbf24; --red: #f87171;
+  --purple: #a855f7; --pink: #f472b6; --orange: #fb923c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 14px; }
+a { color: var(--accent3); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Header ─── */
+header { background: linear-gradient(135deg, #08080f 0%, #0c1020 60%, #0a1525 100%); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; }
+header .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
+h1 { font-size: 1.9rem; font-weight: 800; background: linear-gradient(120deg, #6366f1 30%, #22d3ee 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: var(--muted); font-size: 0.85rem; max-width: 640px; }
+.header-stats { display: flex; gap: 2.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 0.15rem; }
+.stat .num { font-size: 1.6rem; font-weight: 800; color: var(--accent2); line-height: 1; }
+.stat .label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ─── Layout ─── */
+.content { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+/* ─── Section ─── */
+.section { margin-bottom: 3.5rem; }
+.section-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+.section-title .icon { width: 14px; height: 14px; opacity: 0.7; }
+
+/* ─── Cards ─── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.8rem; }
+.card-sm { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1.1rem; }
+.card-sm:hover { border-color: var(--border2); }
+.card p { color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; }
+.card-title { font-size: 0.88rem; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+.card-title .badge { font-size: 0.62rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+.badge-strategic { background: rgba(99,102,241,0.18); color: var(--accent3); }
+.badge-operational { background: rgba(34,211,238,0.12); color: var(--accent2); }
+.badge-master { background: rgba(168,85,247,0.15); color: var(--purple); }
+.badge-atomic { background: rgba(74,222,128,0.12); color: var(--green); }
+
+/* ─── Layer Architecture ─── */
+.layer-stack { display: flex; flex-direction: column; gap: 0.6rem; }
+.layer { border-radius: 10px; padding: 1.2rem 1.5rem; border: 1px solid; }
+.layer-0 { background: linear-gradient(135deg, #0c0c18, #101022); border-color: var(--border); }
+.layer-1 { background: linear-gradient(135deg, #0c1510, #0f1e14); border-color: rgba(74,222,128,0.2); }
+.layer-2 { background: linear-gradient(135deg, #0c0e18, #101025); border-color: rgba(99,102,241,0.2); }
+.layer-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
+.layer-num { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.55rem; border-radius: 5px; }
+.layer-0 .layer-num { background: rgba(99,102,241,0.2); color: var(--accent3); }
+.layer-1 .layer-num { background: rgba(74,222,128,0.15); color: var(--green); }
+.layer-2 .layer-num { background: rgba(34,211,238,0.15); color: var(--accent2); }
+.layer-name { font-size: 0.95rem; font-weight: 700; }
+.layer-desc { font-size: 0.78rem; color: var(--muted); }
+.layer-components { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.comp-tag { font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 4px; background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.comp-tag.done { border-color: rgba(74,222,128,0.3); color: var(--green); }
+.comp-tag.missing { border-color: rgba(248,113,113,0.25); color: var(--red); }
+
+/* ─── Architecture Comparison ─── */
+.arch-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.arch-col { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.arch-col-header { padding: 0.8rem 1.1rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--border); }
+.arch-col-header.legal { background: rgba(99,102,241,0.08); color: var(--accent3); }
+.arch-col-header.finance { background: rgba(34,211,238,0.08); color: var(--accent2); }
+.arch-col-body { padding: 0.8rem; }
+.arch-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 0.45rem 0; border-bottom: 1px solid var(--border); font-size: 0.75rem; gap: 1rem; }
+.arch-row:last-child { border-bottom: none; }
+.arch-row-name { color: var(--text); flex-shrink: 0; }
+.arch-row-val { color: var(--muted); text-align: right; }
+.val-done { color: var(--green); }
+.val-missing { color: var(--red); }
+
+/* ─── Scenario Grid ─── */
+.scenario-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.7rem; }
+.scenario-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; transition: border-color 0.15s; }
+.scenario-card:hover { border-color: var(--border2); }
+.scenario-card.strategic { border-left: 3px solid var(--accent); }
+.scenario-card.operational { border-left: 3px solid var(--accent2); }
+.sc-name { font-size: 0.82rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+.sc-name-text { color: var(--text); }
+.sc-tier { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; padding: 0.1rem 0.4rem; border-radius: 4px; }
+.tier-a { background: rgba(99,102,241,0.18); color: var(--accent3); }
+.tier-b { background: rgba(34,211,238,0.12); color: var(--accent2); }
+.sc-meta { display: flex; gap: 0.7rem; flex-wrap: wrap; font-size: 0.68rem; color: var(--muted); }
+.sc-meta span { display: flex; align-items: center; gap: 0.25rem; }
+
+/* ─── File Count ─── */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-top: 0.8rem; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+.stat-box .n { font-size: 2rem; font-weight: 900; line-height: 1; }
+.stat-box .n.accent { color: var(--accent); }
+.stat-box .n.cyan { color: var(--accent2); }
+.stat-box .n.green { color: var(--green); }
+.stat-box .n.purple { color: var(--purple); }
+.stat-box .l { font-size: 0.68rem; color: var(--muted); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ─── Connectors ─── */
+.conn-table { width: 100%; border-collapse: collapse; }
+.conn-table th { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+.conn-table td { padding: 0.55rem 0.8rem; font-size: 0.78rem; border-bottom: 1px solid var(--border2); vertical-align: top; }
+.conn-table tr:last-child td { border-bottom: none; }
+.conn-table .conn-name { font-weight: 600; color: var(--text); }
+.conn-table .conn-sys { color: var(--muted); font-size: 0.72rem; }
+.conn-table .conn-tools { color: var(--muted); font-size: 0.7rem; }
+.conn-layer { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; padding: 0.15rem 0.45rem; border-radius: 4px; display: inline-block; }
+.layer-badge-1 { background: rgba(99,102,241,0.15); color: var(--accent3); }
+.layer-badge-2 { background: rgba(34,211,238,0.12); color: var(--accent2); }
+.layer-badge-3 { background: rgba(168,85,247,0.12); color: var(--purple); }
+.layer-badge-4 { background: rgba(251,191,36,0.12); color: var(--amber); }
+.layer-badge-5 { background: rgba(248,113,113,0.12); color: var(--red); }
+
+/* ─── Cold-Start ─── */
+.flow-steps { display: flex; flex-direction: column; gap: 0; }
+.flow-step { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--border2); }
+.flow-step:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(99,102,241,0.2); color: var(--accent3); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-body { flex: 1; }
+.step-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.step-desc { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+
+/* ─── Project Workspace ─── */
+.tree { font-size: 0.8rem; color: var(--muted); }
+.tree-item { padding: 0.2rem 0; display: flex; align-items: flex-start; gap: 0.4rem; }
+.tree-indent { color: var(--faint); user-select: none; }
+.tree-name { color: var(--text); }
+.tree-comment { color: var(--faint); font-style: italic; }
+
+/* ─── Skill Structure ─── */
+.skill-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+.skill-demo-col { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.skill-demo-header { padding: 0.6rem 0.9rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+.skill-demo-header.master { background: rgba(168,85,247,0.08); color: var(--purple); }
+.skill-demo-header.atomic { background: rgba(74,222,128,0.08); color: var(--green); }
+.skill-demo pre { padding: 0.8rem; font-size: 0.72rem; line-height: 1.8; color: var(--muted); overflow-x: auto; white-space: pre; }
+.skill-demo .kw { color: var(--accent3); }
+.skill-demo .val { color: var(--accent2); }
+.skill-demo .comment { color: var(--faint); font-style: italic; }
+.skill-demo .section { color: var(--amber); }
+
+/* ─── References ─── */
+.ref-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.ref-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 1rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+.ref-icon { font-size: 1.1rem; flex-shrink: 0; }
+.ref-title { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.ref-desc { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+/* ─── Tier A highlight ─── */
+.tier-a-callout { background: linear-gradient(135deg, #0e0e20, #111128); border: 1px solid rgba(99,102,241,0.3); border-radius: 10px; padding: 1.2rem 1.5rem; margin-top: 0.8rem; }
+.tier-a-callout .title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent3); margin-bottom: 0.8rem; }
+.tier-a-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
+.ta-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 0.7rem 0.9rem; }
+.ta-item-name { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.ta-item-count { font-size: 0.7rem; color: var(--muted); margin-top: 0.15rem; }
+
+/* ─── Footer ─── */
+footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; font-size: 0.72rem; color: var(--faint); }
+
+@media (max-width: 640px) {
+  .arch-compare, .skill-demo { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Finance Skills — AI-Ready Financial Intelligence</div>
+  <h1>全景能力图谱</h1>
+  <p class="subtitle">29 个财务场景 · 131 个 Skill · 覆盖 CFO 全部工作域的 AI 财务助手技能库</p>
+  <div class="header-stats">
+    <div class="stat"><span class="num">29</span><span class="label">财务场景</span></div>
+    <div class="stat"><span class="num">131</span><span class="label">Skill 文件</span></div>
+    <div class="stat"><span class="num">13</span><span class="label">战略场景（A级）</span></div>
+    <div class="stat"><span class="num">16</span><span class="label">运营场景（B级）</span></div>
+    <div class="stat"><span class="num">5</span><span class="label">Connector 层</span></div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════
+     SECTION 1: 三层架构
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 5v6L8 15 2 11V5L8 1z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+    工程架构 — 三层体系
+  </div>
+
+  <div class="layer-stack">
+    <div class="layer layer-0">
+      <div class="layer-header">
+        <span class="layer-num">Layer 0</span>
+        <span class="layer-name">finance-builder-hub</span>
+        <span style="font-size:0.68rem;color:var(--green);margin-left:0.5rem;">✅ 已实现</span>
+      </div>
+      <div class="layer-desc">全局基础设施 — 连接器注册 · 首次配置向导 · 全局 MCP 配置</div>
+      <div class="layer-components">
+        <span class="comp-tag done">cold-start 配置向导</span>
+        <span class="comp-tag done">.mcp.json 全局连接器</span>
+        <span class="comp-tag done">CONNECTORS.md 规范</span>
+        <span class="comp-tag done">PROJECT_WORKSPACE.md 项目规范</span>
+        <span class="comp-tag">skill-installer（规划中）</span>
+      </div>
+    </div>
+
+    <div class="layer layer-1">
+      <div class="layer-header">
+        <span class="layer-num">Layer 1</span>
+        <span class="layer-name">b-scenes/ — 场景层</span>
+        <span style="font-size:0.68rem;color:var(--muted);margin-left:0.5rem;">✅ 29 场景全部就绪</span>
+      </div>
+      <div class="layer-desc">每个场景 = references/（知识后端）+ skills/（原子能力）+ CLAUDE.md（用户配置）</div>
+      <div class="layer-components">
+        <span class="comp-tag done">判断框架.md — 决策逻辑</span>
+        <span class="comp-tag done">数据源清单.md — Connector 映射</span>
+        <span class="comp-tag done">查询路径.md — SOP</span>
+        <span class="comp-tag done">scene-master — 编排层</span>
+        <span class="comp-tag done">atomic skills — 执行层</span>
+      </div>
+    </div>
+
+    <div class="layer layer-2">
+      <div class="layer-header">
+        <span class="layer-num">Layer 2</span>
+        <span class="layer-name">projects/ — 项目空间</span>
+        <span style="font-size:0.68rem;color:var(--muted);margin-left:0.5rem;">规范已定义，运行时按需创建</span>
+      </div>
+      <div class="layer-desc">财务工作以项目为单位：年度审计、季度预算审查、税务申报、M&A 尽调…跨 Session 记住上下文</div>
+      <div class="layer-components">
+        <span class="comp-tag done">project.md 项目上下文</span>
+        <span class="comp-tag done">project.md 格式规范</span>
+        <span class="comp-tag">运行时创建项目目录</span>
+        <span class="comp-tag">发现物 / findings/</span>
+        <span class="comp-tag">文档 / documents/</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2: Legal 对比
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M5 3V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5V3" stroke="currentColor" stroke-width="1.2"/></svg>
+    Legal 对比 — 差距分析
+  </div>
+
+  <div class="arch-compare">
+    <div class="arch-col">
+      <div class="arch-col-header legal">Legal（claude-for-legal）✅ 完整</div>
+      <div class="arch-col-body">
+        <div class="arch-row"><span class="arch-row-name">Layer 0 hub</span><span class="arch-row-val val-done">✅ 完整</span></div>
+        <div class="arch-row"><span class="arch-row-name">Layer 1 域 × 12</span><span class="arch-row-val val-done">✅ CLAUDE.md + agents/</span></div>
+        <div class="arch-row"><span class="arch-row-name">Layer 2 deals/</span><span class="arch-row-val val-done">✅ matter.md + documents/</span></div>
+        <div class="arch-row"><span class="arch-row-name">MCP Connectors</span><span class="arch-row-val val-done">✅ 已定义</span></div>
+        <div class="arch-row"><span class="arch-row-name">Skill 安装器</span><span class="arch-row-val val-done">✅ 可执行</span></div>
+        <div class="arch-row"><span class="arch-row-name">场景数量</span><span class="arch-row-val val-done">✅ 12 域</span></div>
+      </div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-col-header finance">Finance（finance-skills）🔄 进行中</div>
+      <div class="arch-col-body">
+        <div class="arch-row"><span class="arch-row-name">Layer 0 hub</span><span class="arch-row-val val-done">✅ 已实现</span></div>
+        <div class="arch-row"><span class="arch-row-name">Layer 1 场景 × 29</span><span class="arch-row-val val-done">✅ references/ + skills/</span></div>
+        <div class="arch-row"><span class="arch-row-name">Layer 2 projects/</span><span class="arch-row-val val-done">✅ 规范已定义</span></div>
+        <div class="arch-row"><span class="arch-row-name">MCP Connectors</span><span class="arch-row-val val-done">✅ 已定义（.mcp.json）</span></div>
+        <div class="arch-row"><span class="arch-row-name">Skill 安装器</span><span class="arch-row-val val-missing">⏳ 规划中</span></div>
+        <div class="arch-row"><span class="arch-row-name">场景数量</span><span class="arch-row-val val-done">✅ 29 场景</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3: 文件统计
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    文件统计
+  </div>
+
+  <div class="card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+      <div>
+        <div class="card-title" style="margin-bottom:1rem;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="var(--accent3)" stroke-width="1.3" stroke-linecap="round"/></svg>
+          Skill 文件构成
+        </div>
+        <div class="stats-row" style="grid-template-columns:1fr 1fr;">
+          <div class="stat-box"><div class="n purple">26</div><div class="l">Master Skill</div></div>
+          <div class="stat-box"><div class="n green">105</div><div class="l">Atomic Skill</div></div>
+          <div class="stat-box"><div class="n accent">29</div><div class="l">场景</div></div>
+          <div class="stat-box"><div class="n cyan">131</div><div class="l">总文件数</div></div>
+        </div>
+        <div style="margin-top:1rem;font-size:0.72rem;color:var(--muted);">
+          注：3 个运营场景（budget-management / expense-review / month-end-close）无 Master Skill，为纯 Atomic 编排。
+        </div>
+      </div>
+      <div>
+        <div class="card-title" style="margin-bottom:1rem;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3.5 1.5 5.5L8 12 3.5 15 5 9.5 1 6h5z" stroke="var(--accent2)" stroke-width="1.2" fill="none"/></svg>
+          质量指标
+        </div>
+        <div class="stats-row" style="grid-template-columns:1fr 1fr 1fr;">
+          <div class="stat-box"><div class="n green">100%</div><div class="l">FM 格式 ✅</div></div>
+          <div class="stat-box"><div class="n green">100%</div><div class="l">Examples ✅</div></div>
+          <div class="stat-box"><div class="n green">100%</div><div class="l">References ✅</div></div>
+        </div>
+        <div style="margin-top:0.8rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-strategic" style="font-size:0.65rem;padding:0.2rem 0.5rem;">战略场景 13个</span>
+          <span class="badge badge-operational" style="font-size:0.65rem;padding:0.2rem 0.5rem;">运营场景 16个</span>
+          <span style="font-size:0.68rem;color:var(--muted);align-self:center;">所有场景含 判断框架/数据源清单/查询路径</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 4: 场景全景
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>
+    29 场景 — 战略级（A级）· 13 个
+  </div>
+
+  <div class="scenario-grid" style="margin-bottom:1.5rem;">
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">internal-control</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">kpi-management</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">board-reporting</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">management-report</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">business-insight</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">strategic-planning</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">financing-structure</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">m-and-a</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 5 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">fx-risk</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">esg-reporting</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">investor-relations</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">treasury-management</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card strategic"><div class="sc-name"><span class="sc-name-text">capital-allocation</span><span class="sc-tier tier-a">A级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+  </div>
+
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9.5" y="1.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="1.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.2"/></svg>
+    运营级（B级）· 16 个
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">accounts-payable</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">accounts-receivable</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">audit-support</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">budget-management</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>⚪ 纯 Atomic（无 Master）</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">cash-management</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">compliance-reporting</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">cost-control</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">expense-review</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>⚪ 纯 Atomic（无 Master）</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">financial-analysis</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">fixed-assets</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">intercompany-accounting</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">investment-management</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">month-end-close</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>⚪ 纯 Atomic（无 Master）</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">payroll-accounting</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">tax-filing</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 3 Atomic</span><span>✅ refs</span></div></div>
+    <div class="scenario-card operational"><div class="sc-name"><span class="sc-name-text">treasury-advanced</span><span class="sc-tier tier-b">B级</span></div><div class="sc-meta"><span>🔷 1 Master + 4 Atomic</span><span>✅ refs</span></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5: 战略场景（A级）能力详情
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M8 1l2 5h5l-4 3.5 1.5 5.5L8 12 3.5 15 5 9.5 1 6h5z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+    战略场景（A级）能力详情
+  </div>
+
+  <div class="tier-a-callout">
+    <div class="title">13 A级场景 — Master Skill + 4/5 Atomic Skill，100% 含判断框架 + 数据源清单 + 查询路径</div>
+    <div class="tier-a-grid">
+      <div class="ta-item"><div class="ta-item-name">internal-control</div><div class="ta-item-count">内控设计 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">kpi-management</div><div class="ta-item-count">KPI 管理 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">board-reporting</div><div class="ta-item-count">董事会汇报 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">management-report</div><div class="ta-item-count">管理报告 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">business-insight</div><div class="ta-item-count">商业洞察 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">strategic-planning</div><div class="ta-item-count">战略规划 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">financing-structure</div><div class="ta-item-count">融资结构 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">m-and-a</div><div class="ta-item-count">并购 · Master + 5 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">fx-risk</div><div class="ta-item-count">外汇风险 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">esg-reporting</div><div class="ta-item-count">ESG 报告 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">investor-relations</div><div class="ta-item-count">投资者关系 · Master + 4 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">treasury-management</div><div class="ta-item-count">司库管理 · Master + 3 Atomic</div></div>
+      <div class="ta-item"><div class="ta-item-name">capital-allocation</div><div class="ta-item-count">资本配置 · Master + 4 Atomic</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 6: Skill 结构
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M3 2h10a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+    Skill 结构 — Master vs Atomic
+  </div>
+
+  <div class="skill-demo">
+    <div class="skill-demo-col">
+      <div class="skill-demo-header master">Master Skill — 编排层</div>
+      <pre>
+<span class="comment"># /[scene]-master — 场景主技能</span>
+
+<span class="section">## 能力描述</span>
+<span class="comment">  场景是什么、能解决什么、边界在哪</span>
+
+<span class="section">## 触发条件</span>
+<span class="comment">  用户说什么时调用本技能</span>
+
+<span class="section">## Examples</span>
+<span class="comment">  → 示例：用户说"...", 调用本技能</span>
+<span class="comment">  → 示例：用户说"...", 调用本技能</span>
+<span class="comment">  → 示例：用户说"...", 调用本技能</span>
+
+<span class="section">## [编排分支]</span>
+<span class="comment">  根据用户意图分发到对应 Atomic</span>
+
+<span class="kw">argument-hint:</span> <span class="val">"[场景关键词] [对象]"</span>
+<span class="kw">risk_level:</span> <span class="val">high</span>
+<span class="kw">version:</span> <span class="val">1.0.0</span></pre>
+    </div>
+    <div class="skill-demo-col">
+      <div class="skill-demo-header atomic">Atomic Skill — 执行层</div>
+      <pre>
+<span class="comment"># /[atomic-skill] — 原子技能</span>
+
+<span class="section">## Examples</span>
+<span class="comment">  → 示例：用户说"...", 调用本技能</span>
+<span class="comment">  → 示例：用户说"...", 调用本技能</span>
+<span class="comment">  → 示例：用户说"...", 调用本技能</span>
+
+<span class="section">## 加载上下文</span>
+<span class="comment">  读取场景级配置 refs/</span>
+
+<span class="section">## 第一步 / 第二步 ...</span>
+<span class="comment">  可执行步骤（判断→工具调用→输出）</span>
+
+<span class="kw">argument-hint:</span> <span class="val">"[精确参数]"</span>
+<span class="kw">risk_level:</span> <span class="val">medium</span>
+<span class="kw">version:</span> <span class="val">1.0.0</span></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 7: 场景知识后端
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M2 3h12v9H2z" stroke="currentColor" stroke-width="1.2" rx="1"/><path d="M5 3V2M11 3V2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M5 7h6M5 10h3" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+    场景知识后端 — 每个场景的 references/
+  </div>
+
+  <div class="ref-list">
+    <div class="ref-item">
+      <div class="ref-icon">🧠</div>
+      <div>
+        <div class="ref-title">判断框架.md — Decision Logic</div>
+        <div class="ref-desc">场景核心判断逻辑。以 YAML/表格形式沉淀财务判断规则（如内控缺陷分级标准、KPI 选择逻辑、投资可行性判断树）。供 Atomic Skill 读取执行，不直接暴露给用户。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-icon">🔌</div>
+      <div>
+        <div class="ref-title">数据源清单.md — Connector Mapping</div>
+        <div class="ref-desc">场景所需数据 → 对应 Connector → 系统/表/字段 映射。包括系统连接状态表（Operational / Configured-unreachable / Not configured）和关键阈值配置。Agent 读取后决定工具调用路径。</div>
+      </div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-icon">🗺️</div>
+      <div>
+        <div class="ref-title">查询路径.md — SOP</div>
+        <div class="ref-desc">场景的标准操作流程（SOP）。当没有 Connector 时，Agent 按 SOP 引导用户手动完成数据收集和决策。每一步标注信息来源和预期输出。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 8: Connector 生态
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><circle cx="4" cy="8" r="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M6 8l4-3.5M6 8l4 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+    Connector 生态 — 5 层架构
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table class="conn-table">
+      <thead>
+        <tr>
+          <th style="width:60px;">Layer</th>
+          <th style="width:160px;">Connector</th>
+          <th style="width:100px;">系统</th>
+          <th>核心工具</th>
+          <th>覆盖场景</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="conn-layer layer-badge-1">L1 ERP</span></td>
+          <td><span class="conn-name">SAP S/4HANA</span></td>
+          <td class="conn-sys">SAP</td>
+          <td class="conn-tools">sap_gl_query, sap_ar_age, sap_ap_payment, sap_fixed_assets...</td>
+          <td style="color:var(--muted);font-size:0.7rem;">AR/AP/内控/月结/资产/司库/外汇/融资/M&A/成本/税务</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-1">L1 ERP</span></td>
+          <td><span class="conn-name">Oracle EBS / Fusion</span></td>
+          <td class="conn-sys">Oracle</td>
+          <td class="conn-tools">ora_gl_query, ora_ar_age, ora_ap_payment</td>
+          <td style="color:var(--muted);font-size:0.7rem;">同 SAP，覆盖外资/港股客户</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-1">L1 ERP</span></td>
+          <td><span class="conn-name">用友 NC/U8/Cloud</span></td>
+          <td class="conn-sys">用友</td>
+          <td class="conn-tools">yonyou_gl_query, yonyou_ar, yonyou_ap</td>
+          <td style="color:var(--muted);font-size:0.7rem;">国内企业</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-1">L1 ERP</span></td>
+          <td><span class="conn-name">金蝶 K3/Cloud</span></td>
+          <td class="conn-sys">金蝶</td>
+          <td class="conn-tools">kingdee_gl_query, kingdee_ar, kingdee_ap</td>
+          <td style="color:var(--muted);font-size:0.7rem;">国内企业</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-2">L2 BI</span></td>
+          <td><span class="conn-name">Power BI</span></td>
+          <td class="conn-sys">Microsoft</td>
+          <td class="conn-tools">pbi_datasets_refresh, pbi_report_export, pbi_data_query</td>
+          <td style="color:var(--muted);font-size:0.7rem;">管理报告/董事会/KPI/预算/商业洞察/M&A</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-2">L2 BI</span></td>
+          <td><span class="conn-name">Tableau</span></td>
+          <td class="conn-sys">Tableau</td>
+          <td class="conn-tools">tableau_views_query, tableau_workbook_export</td>
+          <td style="color:var(--muted);font-size:0.7rem;">分析与商业洞察</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-3">L3 执行</span></td>
+          <td><span class="conn-name">BlackLine</span></td>
+          <td class="conn-sys">BlackLine</td>
+          <td class="conn-tools">bl_account_recon, bl_task_status, bl_variance_query</td>
+          <td style="color:var(--muted);font-size:0.7rem;">月结/内控</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-3">L3 执行</span></td>
+          <td><span class="conn-name">SAP Concur</span></td>
+          <td class="conn-sys">SAP Concur</td>
+          <td class="conn-tools">concur_expense_list, concur_approval_submit, concur_policy_check</td>
+          <td style="color:var(--muted);font-size:0.7rem;">费用审查</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-3">L3 执行</span></td>
+          <td><span class="conn-name">Kyriba</span></td>
+          <td class="conn-sys">Kyriba</td>
+          <td class="conn-tools">kyriba_cash_positions, kyriba_forecast, kyriba_bank_statements</td>
+          <td style="color:var(--muted);font-size:0.7rem;">司库/现金流</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-3">L3 执行</span></td>
+          <td><span class="conn-name">Bloomberg (TSOX)</span></td>
+          <td class="conn-sys">Bloomberg</td>
+          <td class="conn-tools">bloomberg_fx_rate, bloomberg_equity_quote, bloomberg_bond_analytics</td>
+          <td style="color:var(--muted);font-size:0.7rem;">外汇/融资</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-4">L4 合规</span></td>
+          <td><span class="conn-name">SharePoint / Google Drive</span></td>
+          <td class="conn-sys">Microsoft/Google</td>
+          <td class="conn-tools">sp_finance_library_read, gdrive_finance_folder_read</td>
+          <td style="color:var(--muted);font-size:0.7rem;">所有文档管理场景</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-5">L5 HR/税务</span></td>
+          <td><span class="conn-name">Workday HCM</span></td>
+          <td class="conn-sys">Workday</td>
+          <td class="conn-tools">workday_payroll_query, workday_headcount_export</td>
+          <td style="color:var(--muted);font-size:0.7rem;">薪酬/人力成本/预算</td>
+        </tr>
+        <tr>
+          <td><span class="conn-layer layer-badge-5">L5 HR/税务</span></td>
+          <td><span class="conn-name">Vertex / Sovos</span></td>
+          <td class="conn-sys">Vertex</td>
+          <td class="conn-tools">vertex_quote_request, vertex_jurisdiction_lookup</td>
+          <td style="color:var(--muted);font-size:0.7rem;">税务计算</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 9: Cold-Start 引导
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M8 2v4l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/></svg>
+    Cold-Start 首次配置向导
+  </div>
+
+  <div class="card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-num">P0</div>
+          <div class="step-body">
+            <div class="step-title">连接器检测</div>
+            <div class="step-desc">轻量 API 调用验证 SAP / Power BI / BlackLine / Concur 等是否真正可达，标记 Operational / Configured-unreachable / Not configured 三种状态。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">P1</div>
+          <div class="step-body">
+            <div class="step-title">公司配置</div>
+            <div class="step-desc">收集 ERP 类型 / 审计周期 / 财务职能结构 / 公司名称 / 所属行业，写入 <code>~/.config/finance-skills/CLAUDE.md</code>。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">P2</div>
+          <div class="step-body">
+            <div class="step-title">场景选择</div>
+            <div class="step-desc">用户选择相关场景（可多选），安装对应 references/ 和 skills/，激活 Connector 覆盖。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">P3</div>
+          <div class="step-body">
+            <div class="step-title">关键阈值设置</div>
+            <div class="step-desc">设置场景级阈值（内控缺陷分级标准、KPI 基准值、预算容许偏差%等），写入场景级 CLAUDE.md。</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">P4</div>
+          <div class="step-body">
+            <div class="step-title">写入配置</div>
+            <div class="step-desc">将所有配置持久化到 <code>~/.config/finance-skills/</code>，生成操作日志，完成冷启动。</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;">触发方式</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:0.8rem;margin-bottom:1rem;">
+          <div style="font-family:monospace;font-size:0.75rem;color:var(--accent2);">/finance:cold-start</div>
+          <div style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem;">或说"开始配置"、"初始化财务技能"、<br>"财务助手设置"、"cold start"、"setup finance"</div>
+        </div>
+        <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;">配置检查</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:0.8rem;">
+          <div style="font-family:monospace;font-size:0.75rem;color:var(--accent2);">/finance:cold-start --check-connections</div>
+          <div style="font-size:0.72rem;color:var(--muted);margin-top:0.3rem;">仅检测连接器状态，不触发完整向导</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 10: Project Workspace
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">
+    <svg class="icon" viewBox="0 0 16 16" fill="none"><path d="M2 5h12M2 9h8M2 13h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    Project Workspace — 项目空间规范
+  </div>
+
+  <div class="card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div>
+        <div class="card-title" style="margin-bottom:0.8rem;">目录结构</div>
+        <div class="tree">
+<div class="tree-item"><span class="tree-indent">📁</span><span class="tree-name">~/.config/finance-skills/</span></div>
+<div class="tree-item"><span class="tree-indent">├──</span><span class="tree-name">CLAUDE.md</span><span class="tree-comment"> ← 公司级配置</span></div>
+<div class="tree-item"><span class="tree-indent">├──</span><span class="tree-name">credentials/</span><span class="tree-comment"> ← API 密钥（Agent 不可见）</span></div>
+<div class="tree-item"><span class="tree-indent">└──</span><span class="tree-name">projects/</span><span class="tree-comment"> ← 所有财务项目</span></div>
+<div class="tree-item"><span class="tree-indent">    └──</span><span class="tree-name">2026-annual-audit/</span></div>
+<div class="tree-item"><span class="tree-indent">        ├──</span><span class="tree-name">project.md</span><span class="tree-comment"> ← 项目核心上下文</span></div>
+<div class="tree-item"><span class="tree-indent">        ├──</span><span class="tree-name">scope.md</span><span class="tree-comment"> ← 审计范围</span></div>
+<div class="tree-item"><span class="tree-indent">        ├──</span><span class="tree-name">findings/</span><span class="tree-comment"> ← 缺陷评估</span></div>
+<div class="tree-item"><span class="tree-indent">        ├──</span><span class="tree-name">control-testing/</span><span class="tree-comment"> ← 测试底稿</span></div>
+<div class="tree-item"><span class="tree-indent">        └──</span><span class="tree-name">documents/</span><span class="tree-comment"> ← 相关文档</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="card-title" style="margin-bottom:0.8rem;">project.md 核心字段</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:0.9rem;font-size:0.75rem;font-family:monospace;line-height:2;color:var(--muted);">
+<div><span style="color:var(--accent3)">project_type:</span><span style="color:var(--accent2)"> "annual-audit"</span></div>
+<div><span style="color:var(--accent3)">project_code:</span><span style="color:var(--accent2)"> "2026-audit-ic"</span></div>
+<div><span style="color:var(--accent3)">period:</span><span style="color:var(--accent2)"> "FY2026"</span></div>
+<div><span style="color:var(--accent3)">scenarios:</span><span style="color:var(--accent2)"> ["internal-control"]</span></div>
+<div><span style="color:var(--accent3)">connectors:</span><span style="color:var(--accent2)"> ["sap_*", "bl_*"]</span></div>
+<div><span style="color:var(--accent3)">key_contacts:</span><span style="color:var(--accent2)"> CFO / 内审总监</span></div>
+<div><span style="color:var(--accent3)">findings:</span><span style="color:var(--accent2)"> ["C-01", "C-02"]</span></div>
+<div><span style="color:var(--accent3)">status:</span><span style="color:var(--accent2)"> in_progress</span></div>
+        </div>
+        <div style="margin-top:1rem;font-size:0.72rem;color:var(--muted);">
+          项目空间让 Agent 能够跨 Session 记住上下文，关联产出物，区分"当前项目"和"历史项目"。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  Finance Skills — AI-Ready Financial Intelligence &nbsp;·&nbsp; 29 场景 · 131 Skill · MCP Connector 生态 &nbsp;·&nbsp; Built on Hermes Agent
+</footer>
+
+</body>
+</html>

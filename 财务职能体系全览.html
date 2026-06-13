@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公司财务职能体系全览</title>
+<style>
+:root {
+  --bg: #0d0d0f; --surface: #161618; --surface2: #1e1e22; --border: #2a2a2e;
+  --text: #e8e8ed; --muted: #8888a0; --accent: #6366f1;
+  --accent2: #22d3ee; --green: #4ade80; --amber: #fbbf24;
+  --red: #f87171; --purple: #a855f7; --pink: #f472b6;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+/* ─── Header ─── */
+header { background: linear-gradient(135deg, #0a0a12 0%, #0f1520 100%); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; }
+header .eyebrow { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+h1 { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: var(--muted); font-size: 0.85rem; }
+.header-meta { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+.header-meta-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.74rem; color: var(--muted); }
+.header-meta-item .dot { width: 6px; height: 6px; border-radius: 50%; }
+.dot-green { background: var(--green); }
+.dot-blue { background: var(--accent2); }
+.dot-amber { background: var(--amber); }
+
+/* ─── Layout ─── */
+.content { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ─── Section ─── */
+.section { margin-bottom: 3rem; }
+.section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+.section-title .icon { font-size: 0.9rem; }
+
+/* ─── Overview Grid ─── */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; }
+.level-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+.level-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.level-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.level-card.l1::before { background: linear-gradient(90deg, #4ade80, #22c55e); }
+.level-card.l2::before { background: linear-gradient(90deg, #22d3ee, #06b6d4); }
+.level-card.l3::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+.level-card.l4::before { background: linear-gradient(90deg, #f59e0b, #f97316); }
+.level-card.l5::before { background: linear-gradient(90deg, #f87171, #ef4444); }
+.level-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.l1 .level-label { color: var(--green); }
+.l2 .level-label { color: var(--accent2); }
+.l3 .level-label { color: var(--accent); }
+.l4 .level-label { color: var(--amber); }
+.l5 .level-label { color: var(--red); }
+.level-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+.level-roles { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
+.level-focus { font-size: 0.75rem; color: var(--text); margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.level-focus strong { display: block; font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.15rem; }
+
+/* ─── Task Table ─── */
+.task-block { margin-bottom: 2rem; }
+.level-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.level-badge { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.06em; padding: 0.2rem 0.55rem; border-radius: 20px; text-transform: uppercase; }
+.badge-l1 { background: rgba(74,222,128,0.15); color: var(--green); }
+.badge-l2 { background: rgba(34,211,238,0.15); color: var(--accent2); }
+.badge-l3 { background: rgba(99,102,241,0.15); color: var(--accent); }
+.badge-l4 { background: rgba(251,191,36,0.15); color: var(--amber); }
+.badge-l5 { background: rgba(248,113,113,0.15); color: var(--red); }
+.level-name { font-size: 0.95rem; font-weight: 700; }
+
+.task-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1.2rem; }
+.task-section-header { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+.task-section-title { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+.task-toggle { font-size: 0.7rem; color: var(--muted); transition: transform 0.2s; }
+.task-section.open .task-toggle { transform: rotate(180deg); }
+.task-section-content { display: none; padding: 0.8rem 1rem 1rem; }
+.task-section.open .task-section-content { display: block; }
+
+.tasks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.task-item { background: var(--surface2); border: 1px solid rgba(255,255,255,0.04); border-radius: 6px; padding: 0.5rem 0.7rem; font-size: 0.78rem; color: var(--text); display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5; }
+.task-item::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+.tasks-single { display: flex; flex-direction: column; gap: 0.4rem; }
+.tasks-single .task-item { width: 100%; }
+
+.skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.skill-tag { background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); color: var(--accent); font-size: 0.68rem; padding: 0.15rem 0.5rem; border-radius: 20px; font-weight: 500; }
+
+/* ─── Tool Table ─── */
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
+.tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.tool-card-header { padding: 0.65rem 0.9rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+.tool-card-header.l1 { background: rgba(74,222,128,0.06); color: var(--green); border-color: rgba(74,222,128,0.15); }
+.tool-card-header.l2 { background: rgba(34,211,238,0.06); color: var(--accent2); border-color: rgba(34,211,238,0.15); }
+.tool-card-header.l3 { background: rgba(99,102,241,0.06); color: var(--accent); border-color: rgba(99,102,241,0.15); }
+.tool-card-header.l4 { background: rgba(251,191,36,0.06); color: var(--amber); border-color: rgba(251,191,36,0.15); }
+.tool-card-header.l5 { background: rgba(248,113,113,0.06); color: var(--red); border-color: rgba(248,113,113,0.15); }
+.tool-card-body { padding: 0.7rem 0.9rem; }
+.tool-type { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+.tool-items { font-size: 0.8rem; color: var(--text); line-height: 1.7; }
+
+/* ─── Pyramid ─── */
+.pyramid-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 1.5rem 0; }
+.pyramid-level { display: flex; align-items: center; justify-content: center; text-align: center; border-radius: 6px; padding: 0.9rem 1.2rem; position: relative; transition: transform 0.2s; }
+.pyramid-level:hover { transform: scale(1.02); }
+.pyramid-level .p-label { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 0.2rem; }
+.pyramid-level .p-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
+.pyramid-level .p-desc { font-size: 0.68rem; opacity: 0.75; }
+.pyramid-level .p-skills { font-size: 0.62rem; opacity: 0.6; margin-top: 0.2rem; }
+
+.py5 { width: 42%; background: linear-gradient(135deg, rgba(248,113,113,0.18), rgba(239,68,68,0.18)); border: 1px solid rgba(248,113,113,0.3); }
+.py4 { width: 56%; background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(249,115,22,0.15)); border: 1px solid rgba(251,191,36,0.3); }
+.py3 { width: 70%; background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15)); border: 1px solid rgba(99,102,241,0.3); }
+.py2 { width: 84%; background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(6,182,212,0.12)); border: 1px solid rgba(34,211,238,0.25); }
+.py1 { width: 98%; background: linear-gradient(135deg, rgba(74,222,128,0.12), rgba(34,197,94,0.12)); border: 1px solid rgba(74,222,128,0.25); }
+
+/* ─── Comparison Table ─── */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 0.5rem; }
+.compare-table th { text-align: left; padding: 0.55rem 0.8rem; border-bottom: 2px solid var(--border); color: var(--muted); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; background: rgba(255,255,255,0.02); }
+.compare-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid rgba(42,42,46,0.6); vertical-align: top; color: var(--text); line-height: 1.6; }
+.compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+.compare-table td:first-child { font-weight: 600; }
+.indent { padding-left: 1.2rem !important; color: var(--muted) !important; font-size: 0.73rem !important; }
+
+/* ─── Summary ─── */
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+.summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.1rem; }
+.summary-card-title { font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+.summary-card ul { list-style: none; padding: 0; margin: 0; }
+.summary-card ul li { font-size: 0.78rem; color: var(--text); margin-bottom: 0.35rem; padding-left: 1rem; position: relative; line-height: 1.5; }
+.summary-card ul li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+/* ─── Footer ─── */
+.footer { text-align: center; color: var(--muted); font-size: 0.68rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+
+/* ─── Responsive ─── */
+@media (max-width: 700px) {
+  .overview-grid { grid-template-columns: 1fr 1fr; }
+  .tasks-grid { grid-template-columns: 1fr; }
+  .tool-grid { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .compare-table { font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">职业能力体系</div>
+  <h1>公司财务职能体系全览</h1>
+  <p class="subtitle">从财务助理到 CFO · 各层级职责、技能与工具完整图谱</p>
+  <div class="header-meta">
+    <div class="header-meta-item"><span class="dot dot-green"></span> L1-L2 执行型财务</div>
+    <div class="header-meta-item"><span class="dot dot-blue"></span> L3 分析型财务</div>
+    <div class="header-meta-item"><span class="dot dot-amber"></span> L4-L5 管理/战略型财务</div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- ═══════════════════════════════ -->
+<!-- 一、职位层级概览 -->
+<!-- ═══════════════════════════════ -->
+<div class="section">
+<div class="section-title"><span class="icon">🏢</span> 一、职位层级概览</div>
+
+<div class="overview-grid">
+  <div class="level-card l1">
+    <div class="level-label">L1 · 事务型</div>
+    <div class="level-title">财务助理 / 应付专员 / 应收专员</div>
+    <div class="level-roles">单据处理 · 对账 · 数据录入</div>
+    <div class="level-focus">
+      <strong>职责焦点</strong>
+      执行既定流程，确保数据准确
+    </div>
+  </div>
+
+  <div class="level-card l2">
+    <div class="level-label">L2 · 执行型</div>
+    <div class="level-title">财务分析师 / 总账会计</div>
+    <div class="level-roles">月结 · 报表 · 预算跟踪</div>
+    <div class="level-focus">
+      <strong>职责焦点</strong>
+      按周期产出财务报表和预算报告
+    </div>
+  </div>
+
+  <div class="level-card l3">
+    <div class="level-label">L3 · 分析型</div>
+    <div class="level-title">高级财务分析师 / FP&A</div>
+    <div class="level-roles">预测 · 分析 · 决策支持</div>
+    <div class="level-focus">
+      <strong>职责焦点</strong>
+      连接财务数据与业务决策洞察
+    </div>
+  </div>
+
+  <div class="level-card l4">
+    <div class="level-label">L4 · 管理型</div>
+    <div class="level-title">财务经理</div>
+    <div class="level-roles">团队管理 · 业务对接 · 报告</div>
+    <div class="level-focus">
+      <strong>职责焦点</strong>
+      统筹财务运营，驱动业务合作
+    </div>
+  </div>
+
+  <div class="level-card l5">
+    <div class="level-label">L5 · 策略型</div>
+    <div class="level-title">财务总监 / CFO</div>
+    <div class="level-roles">战略 · 融资 · 投资者关系</div>
+    <div class="level-focus">
+      <strong>职责焦点</strong>
+      财务战略规划，企业价值最大化
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- 二、各层级核心任务 -->
+<!-- ═══════════════════════════════ -->
+<div class="section">
+<div class="section-title"><span class="icon">📋</span> 二、各层级核心任务与技能</div>
+
+<!-- L1 -->
+<div class="task-block">
+<div class="level-header">
+  <span class="level-badge badge-l1">L1</span>
+  <span class="level-name">事务型（执行层）</span>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">日常任务</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">发票录入：供应商发票系统录入，三单匹配（发票/入库单/采购订单）</div>
+      <div class="task-item">费用报销审核：员工提交票据的合规性检查（发票真伪、税号、金额、审批流程）</div>
+      <div class="task-item">付款发起：根据付款条款，发起网银付款或银企直连付款指令</div>
+      <div class="task-item">银行对账：每月银行流水与企业账务逐笔核对，编制银行余额调节表</div>
+      <div class="task-item">应收账款核销：销售收款与客户往来核销，催收超期账款</div>
+      <div class="task-item">应付账款核销：供应商付款与采购订单/收货核销，确认账期</div>
+      <div class="task-item">发票开具：销售发票开具，增值税专用发票/普通发票选择与申报</div>
+      <div class="task-item">税务申报基础数据准备：增值税进项税额抵扣数据整理，企业所得税预缴数据</div>
+      <div class="task-item">凭证整理归档：会计凭证打印、装订、归档，确保合规留存</div>
+      <div class="task-item">基础数据维护：科目体系维护、供应商/客户主数据新增与修改</div>
+    </div>
+  </div>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">核心技能</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">会计准则基础：收入确认原则（权责发生制）、费用匹配原则、资产计价基础</div>
+      <div class="task-item">发票审核要点：税号一致性（购买方/销售方）、发票类型（专用/普通）、税率准确性、备注栏信息</div>
+      <div class="task-item">财务系统操作：SAP FI 模块（FB60/FBL1N/FB03）、用友 U8（总账/应收/应付）、金蝶 K3（基础档案/凭证处理）</div>
+      <div class="task-item">Excel 基础操作：数据透视表、分类汇总、VLOOKUP/XLOOKUP、SUMIF/AVERAGEIF、条件格式</div>
+      <div class="task-item">银行支付结算知识：电汇/承兑/信用证基础，账期管理（T+30/T+60），银企直连操作</div>
+      <div class="task-item">税务基础知识：增值税进项/销项税额抵扣逻辑，企业所得税季度预缴，印花税申报范围</div>
+    </div>
+    <div class="skills-list">
+      <span class="skill-tag">权责发生制</span>
+      <span class="skill-tag">三单匹配</span>
+      <span class="skill-tag">银行调节表</span>
+      <span class="skill-tag">发票审核</span>
+      <span class="skill-tag">SAP FI</span>
+      <span class="skill-tag">Excel 透视表</span>
+      <span class="skill-tag">银企直连</span>
+      <span class="skill-tag">税务基础</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- L2 -->
+<div class="task-block">
+<div class="level-header">
+  <span class="level-badge badge-l2">L2</span>
+  <span class="level-name">执行型（报表层）</span>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">日常任务</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">月末结账：执行月结 checklist（结账前准备→结账操作→结账后检查），确保结账按时完成</div>
+      <div class="task-item">财务报表编制：资产负债表（Balance Sheet）、利润表（Income Statement）、现金流量表（Cash Flow Statement）三表编制</div>
+      <div class="task-item">预算执行跟踪：实际发生数 vs 预算数差异分析，编制预算执行报告（Budget vs Actual）</div>
+      <div class="task-item">往来款清理：员工借款清理（备用金）、关联方往来核对、超期应收应付推动解决</div>
+      <div class="task-item">资产对账：固定资产折旧计提、无形资产摊销、长期待摊费用摊销与总账核对</div>
+      <div class="task-item">税务申报数据准备：增值税申报表（主表/附表）数据准备，企业所得税预缴申报，关联交易申报</div>
+      <div class="task-item">凭证复核与记账：检查凭证摘要规范性、科目准确性、金额计算正确性</div>
+      <div class="task-item">账龄分析：应收账款/应付账款账龄分析，识别超期款项并预警</div>
+    </div>
+  </div>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">核心技能</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">财务结账流程：月结 checklist 设计与执行，结账时间节点管理（Close Checklist），确保结账在 5-7 个工作日内完成</div>
+      <div class="task-item">财务报表钩稽关系检查：资产负债表中未分配利润期末 = 期初 + 本期净利润，利润表净利润 → 资产负债表未分配利润</div>
+      <div class="task-item">预算差异分析（定量部分）：量差（Volume Variance）和价差（Price Variance）计算，差异数据汇总与异常识别</div>
+      <div class="task-item">基础税务计算逻辑：增值税应纳税额 = 销项税额 - 进项税额，企业所得税 = 应税收入 × 税率 - 可加计扣除</div>
+      <div class="task-item">Excel 数据透视表 & 分类汇总：多维度数据汇总，动态切片，预算 vs 实际对比视图搭建</div>
+      <div class="task-item">现金流量表编制（间接法）：从净利润出发，调整非现金项目（折旧/摊销/营运资本变动）推导经营现金流</div>
+      <div class="task-item">往来账款管理：账龄分析表（Ageing Schedule）编制，超期催收流程触发阈值设定</div>
+    </div>
+    <div class="skills-list">
+      <span class="skill-tag">月结 Checklist</span>
+      <span class="skill-tag">三表编制</span>
+      <span class="skill-tag">钩稽关系</span>
+      <span class="skill-tag">预算 vs 实际</span>
+      <span class="skill-tag">间接法现金流</span>
+      <span class="skill-tag">账龄分析</span>
+      <span class="skill-tag">税务申报</span>
+      <span class="skill-tag">Excel 建模</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- L3 -->
+<div class="task-block">
+<div class="level-header">
+  <span class="level-badge badge-l3">L3</span>
+  <span class="level-name">分析型（分析层）</span>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">日常任务</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-grid">
+      <div class="task-item">季度/年度预测：滚动预测（Rolling Forecast）模型维护，12-month forward view</div>
+      <div class="task-item">滚动预测模型维护：季度更新预测，调整假设条件，更新销售/成本/利润预测</div>
+      <div class="task-item">业务板块 P&L 分析：各业务线/产品线/区域利润表分析，贡献 margin 计算</div>
+      <div class="task-item">利润率分析：Gross Margin / EBITDA Margin / Net Margin 各层级分析，趋势追踪</div>
+      <div class="task-item">成本动因分析：固定成本 vs 变动成本分解，单位成本追踪，产能利用率分析</div>
+      <div class="task-item">资本支出（Capex）评估：新设备/项目投资回报分析，ROI / Payback Period 计算</div>
+      <div class="task-item">月度管理层报告：经营分析报告（月报）编写，含 KPI 仪表板 + 文字分析评论</div>
+      <div class="task-item">营运资本（Working Capital）分析：DSO / DPO / DIO 计算，现金周期优化建议</div>
+      <div class="task-item">现金流预测：未来 13 周现金滚动预测，流动性风险识别与预警</div>
+      <div class="task-item">情景模拟（What-if）：价格下调 5% / 原材料上涨 10% 对利润影响，压力测试</div>
+    </div>
+  </div>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">核心技能</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">财务建模（三张表联动）：资产负债表 + 利润表 + 现金流量表动态链接，假设驱动自动计算</div>
+      <div class="task-item">DCF 估值：自由现金流折现模型，WACC 计算，Terminal Value 敏感性分析</div>
+      <div class="task-item">LBO 基础模型：杠杆收购财务模型，债务偿还计划，IRR / MOIC 计算</div>
+      <div class="task-item">预算差异分析（定性定量）：差异原因拆解（价格/混合/产量），业务根因分析</div>
+      <div class="task-item">成本行为分析：成本函数分解（固定/变动/半变动），盈亏平衡点（Breakeven）计算</div>
+      <div class="task-item">现金流预测方法：直接法经营现金流预测，应收/应付/库存滚动预测模型</div>
+      <div class="task-item">商业洞察写作：财务数据 → 业务语言转化，向管理层解释"数字背后的故事"</div>
+      <div class="task-item">SQL 数据提取：从 ERP / 数据仓库提取财务数据，进行 ad-hoc 分析</div>
+      <div class="task-item">Python 基础（Jupyter）：Pandas 数据处理，Matplotlib 可视化，财务比率自动计算</div>
+    </div>
+    <div class="skills-list">
+      <span class="skill-tag">三张表联动</span>
+      <span class="skill-tag">DCF 估值</span>
+      <span class="skill-tag">LBO 模型</span>
+      <span class="skill-tag">滚动预测</span>
+      <span class="skill-tag">What-if 分析</span>
+      <span class="skill-tag">盈亏平衡</span>
+      <span class="skill-tag">WC 分析</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Power BI</span>
+      <span class="skill-tag">商业洞察写作</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- L4 -->
+<div class="task-block">
+<div class="level-header">
+  <span class="level-badge badge-l4">L4</span>
+  <span class="level-name">管理型（管理 + 业务对接）</span>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">日常任务</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-grid">
+      <div class="task-item">财务团队管理：2-8 人团队的任务分配、绩效评估、能力发展规划</div>
+      <div class="task-item">业务部门财务 Business Partner：销售/市场/运营的财务对接人，支持业务决策</div>
+      <div class="task-item">年度预算统筹：跨部门协调（销售预算 + 成本预算 + Capex → 整体 P&L），确保预算目标可行</div>
+      <div class="task-item">绩效指标设计：KPI 体系设计（财务类 + 运营类），目标设定与追踪，评价机制建立</div>
+      <div class="task-item">内控流程设计与优化：审批权限设计（Approval Matrix），财务政策更新，SOP 维护</div>
+      <div class="task-item">审计对接：年度审计（外部审计）配合，内审发现整改跟踪，审计材料准备</div>
+      <div class="task-item">管理层汇报材料（Board Deck）：季度/年度董事会材料编写，财务业绩回顾 + 展望</div>
+      <div class="task-item">滚动预测管理：监督 FP&A 团队的预测质量，确保预测偏差在可接受范围（±5-10%）</div>
+    </div>
+  </div>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">核心技能</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">跨部门沟通与协调：销售/市场/供应链/人事财务接口人角色，业务语言翻译为财务语言</div>
+      <div class="task-item">预算编制流程管理：BOTM（Bottom-up / Top-down）混合预算流程，零基预算 vs 增量预算选择与执行</div>
+      <div class="task-item">财务内控设计（SOX/内审要点）：Key Control 识别，控制测试（Control Testing），内控缺陷整改</div>
+      <div class="task-item">团队绩效管理：OKR / KPI 双轨制，财务团队人才盘点，1-on-1 辅导与反馈</div>
+      <div class="task-item">财务向非财务管理层解释数据：用业务语言解释财务结果，预算解读，决策建议呈现</div>
+      <div class="task-item">PPT / 汇报材料结构化表达：Executive Summary 结构，故事线（Narrative）设计，数据可视化</div>
+      <div class="task-item">资金计划管理：月度/季度资金预测，现金流管理，确保运营资金充足</div>
+    </div>
+    <div class="skills-list">
+      <span class="skill-tag">Business Partner</span>
+      <span class="skill-tag">预算统筹</span>
+      <span class="skill-tag">SOX 内控</span>
+      <span class="skill-tag">KPI 设计</span>
+      <span class="skill-tag">团队管理</span>
+      <span class="skill-tag">Board Deck</span>
+      <span class="skill-tag">资金管理</span>
+      <span class="skill-tag">跨部门协调</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- L5 -->
+<div class="task-block">
+<div class="level-header">
+  <span class="level-badge badge-l5">L5</span>
+  <span class="level-name">策略型（CFO / Finance Director）</span>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">日常任务</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-grid">
+      <div class="task-item">融资结构设计：债务融资（银行/债券）/ 股权融资 / 混合融资工具选择，资本结构优化</div>
+      <div class="task-item">M&A 尽调支持：目标公司财务尽职调查，估值方法选择（DCF / Comparable / Precedent Transaction）</div>
+      <div class="task-item">交易架构设计：股权收购 vs 资产收购，税务优化架构，境外/境内结构选择</div>
+      <div class="task-item">投资者关系管理（IR）：分析师沟通，业绩路演，ESG 评级对接，股东结构维护</div>
+      <div class="task-item">资金战略（司库管理）：外汇风险对冲策略，利率风险管理，多币种资金池管理</div>
+      <div class="task-item">战略规划输入：5-year plan 财务目标设定，行业对标（Competitive Benchmarking）</div>
+      <div class="task-item">风险管理体系搭建：财务风险识别（市场/信用/流动性），保险策略，对冲工具运用</div>
+      <div class="task-item">董事会/股东汇报：战略进展，重大交易披露，资本分配决策，股东回报政策</div>
+      <div class="task-item">资本分配决策：投资优先级排序（Capex / M&A / 回购 / 股息），ROIC vs WACC 对比框架</div>
+    </div>
+  </div>
+</div>
+
+<div class="task-section open">
+  <div class="task-section-header" onclick="this.parentElement.classList.toggle('open')">
+    <span class="task-section-title">核心技能</span>
+    <span class="task-toggle">▼</span>
+  </div>
+  <div class="task-section-content">
+    <div class="tasks-single">
+      <div class="task-item">资本结构理论：WACC 优化，债务/股权比率决策，信用评级（Rating）影响分析，税盾效应（Tax Shield）</div>
+      <div class="task-item">M&A 交易全流程：意向书（LOI）→ 尽调（DD）→ 估值（Valuation）→ 交易架构 → 交割（Closing）→ 整合（Integration）</div>
+      <div class="task-item">外汇/利率风险管理工具：远期合约（Forward）、利率掉期（Interest Rate Swap）、期权（Option）对冲策略</div>
+      <div class="task-item">ESG 报告框架：TCFD（气候风险）、CSRD（欧盟可持续发展报告）、Sustainalytics / MSCI ESG 评级</div>
+      <div class="task-item">投资者沟通策略：EBITDA 调整项（Adjusted EBITDA）披露规范，季报/半年报/年报业绩指引（Guidance）</div>
+      <div class="task-item">宏观财务战略：行业周期分析（周期性 vs 防御性），竞争格局财务解读，战略选择财务影响评估</div>
+      <div class="task-item">司库管理（Treasury）：Cash Pooling（现金池），多币种管理，外汇风险管理政策，流动性覆盖比率（LCR）</div>
+    </div>
+    <div class="skills-list">
+      <span class="skill-tag">资本结构</span>
+      <span class="skill-tag">WACC</span>
+      <span class="skill-tag">M&A 全流程</span>
+      <span class="skill-tag">DCF / Comparable</span>
+      <span class="skill-tag">外汇远期</span>
+      <span class="skill-tag">利率掉期</span>
+      <span class="skill-tag">TCFD / CSRD</span>
+      <span class="skill-tag">ESG 评级</span>
+      <span class="skill-tag">投资者关系</span>
+      <span class="skill-tag">司库管理</span>
+      <span class="skill-tag">信用评级</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- 三、各层级使用工具 -->
+<!-- ═══════════════════════════════ -->
+<div class="section">
+<div class="section-title"><span class="icon">🛠️</span> 三、各层级使用工具</div>
+
+<div class="tool-grid">
+
+  <div class="tool-card">
+    <div class="tool-card-header l1">L1 · L2 事务与执行层</div>
+    <div class="tool-card-body">
+      <div class="tool-type">财务核算系统</div>
+      <div class="tool-items">SAP FI · Oracle Financials · 用友 U8/NC · 金蝶 K3/云星空 · 新中大</div>
+      <div class="tool-type" style="margin-top:0.7rem">报销与费用管理</div>
+      <div class="tool-items">携程商旅 · 分贝通 · 钉钉费控 · 飞书费控 · Concur · 胜意费控</div>
+      <div class="tool-type" style="margin-top:0.7rem">发票管理</div>
+      <div class="tool-items">增值税发票查验平台 · 电子发票系统 · 百旺/航天信息开票软件</div>
+      <div class="tool-type" style="margin-top:0.7rem">银行系统</div>
+      <div class="tool-items">企业网银（各家银行）· 银企直连（SAP FI-CA/用友银企联）· SWIFT</div>
+      <div class="tool-type" style="margin-top:0.7rem">Excel 应用</div>
+      <div class="tool-items">数据透视表 · VLOOKUP/XLOOKUP · SUMIF · 分类汇总 · 基础图表</div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header l3">L3 分析型</div>
+    <div class="tool-card-body">
+      <div class="tool-type">财务建模与分析</div>
+      <div class="tool-items">Excel（高级财务建模）· Python（Jupyter/Pandas）· R（统计分析）</div>
+      <div class="tool-type" style="margin-top:0.7rem">BI 可视化</div>
+      <div class="tool-items">Power BI · Tableau · FineBI（帆软）· QuickBI（阿里云）· 网易有数</div>
+      <div class="tool-type" style="margin-top:0.7rem">FP&A 系统</div>
+      <div class="tool-items">Anaplan · Adaptive Insights · Pigment · Cube · Board</div>
+      <div class="tool-type" style="margin-top:0.7rem">预算管理</div>
+      <div class="tool-items">Oracle Hyperion Planning · IBM Planning Analytics (TM1) · 久其 · 用友预算</div>
+      <div class="tool-type" style="margin-top:0.7rem">SQL / 数据提取</div>
+      <div class="tool-items">SAP BW/HAHA · Oracle Analytics Cloud · 自建数据仓库 · MySQL</div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header l4">L4 管理型</div>
+    <div class="tool-card-body">
+      <div class="tool-type">合并报表</div>
+      <div class="tool-items">Oracle Hyperion Financial Close · Tagetik · CCH Tagetik · 久其合并报表</div>
+      <div class="tool-type" style="margin-top:0.7rem">汇报与演示</div>
+      <div class="tool-items">PowerPoint · Canva · Thought Rotator（叙事结构）· Beautiful.ai</div>
+      <div class="tool-type" style="margin-top:0.7rem">项目管理</div>
+      <div class="tool-items">Asana · Monday.com · Jira（财务项目跟踪）· MS Project</div>
+      <div class="tool-type" style="margin-top:0.7rem">内控合规</div>
+      <div class="tool-items">SAP GRC · AuditBoard · Workiva · 致远互联（协同办公）</div>
+      <div class="tool-type" style="margin-top:0.7rem">协同沟通</div>
+      <div class="tool-items">Outlook · Microsoft Teams · Slack · 钉钉/飞书</div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-card-header l5">L5 策略型</div>
+    <div class="tool-card-body">
+      <div class="tool-type">资金管理系统（司库）</div>
+      <div class="tool-items">Kyriba · Treasury Intelligence Solutions (TIS) · GTreasury · SAP TRM · 拜特科技</div>
+      <div class="tool-type" style="margin-top:0.7rem">战略 ERP</div>
+      <div class="tool-items">SAP S/4HANA · Oracle Cloud ERP · Workday Financials</div>
+      <div class="tool-type" style="margin-top:0.7rem">BI / 数据中台</div>
+      <div class="tool-items">Power BI Enterprise · Workday Adaptive · Anaplan · OneStream</div>
+      <div class="tool-type" style="margin-top:0.7rem">ESG 报告</div>
+      <div class="tool-items">Sustainalytics · MSCI ESG Research · ISS ESG · Bloomberg ESG · 妙盈科技</div>
+      <div class="tool-type" style="margin-top:0.7rem">投资者关系</div>
+      <div class="tool-items">Q4 · Diligent（董事会门户）· Intralinks · 东方财富 IR · 新浪财经 IR</div>
+      <div class="tool-type" style="margin-top:0.7rem">M&A 数据</div>
+      <div class="tool-items">Bloomberg · Capital IQ (LSEG) · Refinitiv Eikon · Dealogic · Wind (万得)</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- 四、技能金字塔 -->
+<!-- ═══════════════════════════════ -->
+<div class="section">
+<div class="section-title"><span class="icon">📐</span> 四、技能金字塔</div>
+
+<div class="pyramid-wrap">
+  <div class="pyramid-level py5">
+    <div>
+      <div class="p-label">L5 · 策略型</div>
+      <div class="p-title">战略视野</div>
+      <div class="p-desc">融资结构 · 并购重组 · 外汇风险 · 投资者关系</div>
+      <div class="p-skills">资本结构理论 · M&A 全流程 · ESG 框架 · 司库管理</div>
+    </div>
+  </div>
+  <div class="pyramid-level py4">
+    <div>
+      <div class="p-label">L4 · 管理型</div>
+      <div class="p-title">管理能力</div>
+      <div class="p-desc">团队领导 · 业务伙伴 · 内控设计 · 董事会汇报</div>
+      <div class="p-skills">Business Partner · SOX 内控 · KPI 设计 · 预算统筹</div>
+    </div>
+  </div>
+  <div class="pyramid-level py3">
+    <div>
+      <div class="p-label">L3 · 分析型</div>
+      <div class="p-title">分析能力</div>
+      <div class="p-desc">财务建模 · 预测分析 · 业务洞察 · 资本评估</div>
+      <div class="p-skills">DCF/LBO · 滚动预测 · SQL/Python · What-if 分析</div>
+    </div>
+  </div>
+  <div class="pyramid-level py2">
+    <div>
+      <div class="p-label">L2 · 执行型</div>
+      <div class="p-title">执行能力</div>
+      <div class="p-desc">月末结账 · 报表编制 · 预算跟踪 · 税务申报</div>
+      <div class="p-skills">月结 Checklist · 三表钩稽 · 预算 vs 实际 · 现金流间接法</div>
+    </div>
+  </div>
+  <div class="pyramid-level py1">
+    <div>
+      <div class="p-label">L1 · 事务型</div>
+      <div class="p-title">事务能力</div>
+      <div class="p-desc">发票录入 · 费用审核 · 银行对账 · 数据维护</div>
+      <div class="p-skills">权责发生制 · 三单匹配 · 银行调节表 · 发票审核 · Excel 基础</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- 五、关键区分 -->
+<!-- ═══════════════════════════════ -->
+<div class="section">
+<div class="section-title"><span class="icon">⚖️</span> 五、记账型 vs 分析型 vs 战略型财务</div>
+
+<table class="compare-table">
+  <thead>
+    <tr>
+      <th>维度</th>
+      <th>记账型财务（L1-L2）</th>
+      <th>分析型财务（L3）</th>
+      <th>战略型财务（L4-L5）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>核心产出</td>
+      <td>准确的数据和合规的报表</td>
+      <td>业务洞察和决策支持</td>
+      <td>战略选项和资本配置建议</td>
+    </tr>
+    <tr>
+      <td>时间视角</td>
+      <td>过去（已发生交易记录）</td>
+      <td>未来 1-4 个季度预测</td>
+      <td>3-5 年战略规划</td>
+    </tr>
+    <tr>
+      <td>沟通对象</td>
+      <td>系统 / 同事 / 税务局</td>
+      <td>业务经理 / 产品负责人</td>
+      <td>董事会 / 投资者 / CEO</td>
+    </tr>
+    <tr>
+      <td>核心工具</td>
+      <td>ERP 系统 + Excel</td>
+      <td>Power BI + 预测模型 + SQL</td>
+      <td>资金管理 + BI + IR 工具</td>
+    </tr>
+    <tr>
+      <td>错误代价</td>
+      <td>合规风险 / 处罚 / 决策依据错误</td>
+      <td>业务决策误判 / 预算失控</td>
+      <td>战略失败 / 股东价值损失</td>
+    </tr>
+    <tr>
+      <td>所需 AI 辅助</td>
+      <td>自动化录入 / 对账 / 发票识别</td>
+      <td>预测模型 / 异常检测 / 自动报告生成</td>
+      <td>情景模拟 / 估值分析 / 投资者材料生成</td>
+    </tr>
+    <tr>
+      <td>数据精度要求</td>
+      <td>精确到分（货币单位）</td>
+      <td>精确到万（趋势判断）</td>
+      <td>方向正确即可（战略判断）</td>
+    </tr>
+    <tr>
+      <td>创新能力</td>
+      <td>流程优化 / 效率提升</td>
+      <td>分析方法创新 / 新指标设计</td>
+      <td>商业模式财务影响评估</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- 六、总结 -->
+<!-- ═══════════════════════════════ -->
+<div class="section">
+<div class="section-title"><span class="icon">🎯</span> 六、总结：AI Skill 需求映射</div>
+
+<div class="summary-grid">
+
+  <div class="summary-card">
+    <div class="summary-card-title">🎛️ L1-L2 核心 Skill 需求</div>
+    <ul>
+      <li>标准操作流程 SOP（结账/报销/对账）</li>
+      <li>发票审核规则引擎（税号/税率/三单匹配）</li>
+      <li>财务系统操作指引（SAP/用友/金蝶）</li>
+      <li>银行调节表自动编制</li>
+      <li>月结 Checklist 自动化追踪</li>
+      <li>税务申报数据自动归集</li>
+      <li>凭证自动生成（基于业务事件）</li>
+    </ul>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-card-title">📊 L3 核心 Skill 需求</div>
+    <ul>
+      <li>三张表联动财务模型模板</li>
+      <li>滚动预测模型（12-month rolling）</li>
+      <li>DCF / LBO 分析框架</li>
+      <li>预算 vs 实际差异分析（自动归因）</li>
+      <li>营运资本分析（DSO/DPO/DIO）</li>
+      <li>What-if 情景模拟引擎</li>
+      <li>管理报告自动生成（月报结构）</li>
+      <li>商业洞察自动写作（数字 → 故事）</li>
+    </ul>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-card-title">👥 L4 核心 Skill 需求</div>
+    <ul>
+      <li>年度预算编制流程管理</li>
+      <li>KPI 设计与追踪框架</li>
+      <li>内控设计检查清单（SOX 要点）</li>
+      <li>Board Deck 结构模板</li>
+      <li>Business Partner 话术与框架</li>
+      <li>审计配合 Checklist</li>
+      <li>跨部门财务沟通模板</li>
+    </ul>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-card-title">💼 L5 核心 Skill 需求</div>
+    <ul>
+      <li>融资结构分析框架（债务/股权/混合）</li>
+      <li>M&A 估值方法论（DCF / Comparable / Precedent）</li>
+      <li>外汇/利率风险管理工具选择</li>
+      <li>ESG 报告框架解读（TCFD / CSRD）</li>
+      <li>资本配置决策框架（ROIC vs WACC）</li>
+      <li>投资者关系材料生成</li>
+      <li>5-year 财务预测建模</li>
+      <li>风险管理体系搭建指南</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<div class="footer">公司财务职能体系全览 · L1 事务型 → L5 策略型</div>
+</div>
+
+</body>
+</html>

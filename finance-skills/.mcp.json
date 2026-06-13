@@ -1,0 +1,328 @@
+{
+  "mcpServers": {
+    "sap-s4hana": {
+      "type": "stdio",
+      "command": "npx @finance-mcp/sap-connector",
+      "description": "SAP S/4HANA FI/CO/AR/AP/SD/MM modules — GL query, AR/AP aging, PO/GRN, fixed assets. Primary ERP connector for most finance scenarios.",
+      "auth": {
+        "type": "sso",
+        "provider": "azure-ad"
+      },
+      "tools": [
+        "sap_gl_query",
+        "sap_ar_age",
+        "sap_ap_age",
+        "sap_customer_master",
+        "sap_vendor_master",
+        "sap_po_query",
+        "sap_grn_query",
+        "sap_invoice_post",
+        "sap_fixed_assets",
+        "sap_org_structure",
+        "sap_budget_query",
+        "sap_so_query",
+        "sap_fx_positions"
+      ],
+      "scenarios": [
+        "accounts-receivable",
+        "accounts-payable",
+        "internal-control",
+        "month-end-close",
+        "fixed-assets",
+        "treasury-management",
+        "fx-risk",
+        "financing-structure",
+        "m-and-a",
+        "cost-control",
+        "tax-filing"
+      ]
+    },
+    "power-bi": {
+      "type": "http",
+      "url": "https://analysis.windows.net/powerbi/api",
+      "description": "Power BI REST API — management reports, board dashboards, KPI datasets, budget vs actual analysis. Primary BI connector.",
+      "auth": {
+        "type": "oauth2",
+        "client_id": "${POWER_BI_CLIENT_ID}",
+        "tenant_id": "${POWER_BI_TENANT_ID}"
+      },
+      "tools": [
+        "pbi_datasets_refresh",
+        "pbi_report_export",
+        "pbi_data_query",
+        "pbi_get_gateways",
+        "pbi_gateway_datasources"
+      ],
+      "scenarios": [
+        "board-reporting",
+        "kpi-management",
+        "management-report",
+        "budget-management",
+        "business-insight",
+        "m-and-a"
+      ]
+    },
+    "blackline": {
+      "type": "http",
+      "url": "https://api.blackline.com/api/v2023.4",
+      "description": "BlackLine API — account reconciliations, task management, compliance status, variance analysis. Primary month-end close and control testing connector.",
+      "auth": {
+        "type": "api-key",
+        "key_env": "BLACKLINE_API_KEY"
+      },
+      "tools": [
+        "bl_account_recon",
+        "bl_task_status",
+        "bl_variance_query",
+        "bl_compliance_status",
+        "bl_recon_workbook"
+      ],
+      "scenarios": [
+        "month-end-close",
+        "internal-control",
+        "audit-support",
+        "board-reporting"
+      ]
+    },
+    "sap-concur": {
+      "type": "http",
+      "url": "https://api.concursolutions.com",
+      "description": "SAP Concur API — expense reports, travel approvals, policy compliance, receipt extraction. Primary expense management connector.",
+      "auth": {
+        "type": "oauth2",
+        "client_id": "${CONCUR_CLIENT_ID}",
+        "refresh_token": "${CONCUR_REFRESH_TOKEN}"
+      },
+      "tools": [
+        "concur_expense_list",
+        "concur_expense_detail",
+        "concur_approval_submit",
+        "concur_policy_check",
+        "concur_user_profile",
+        "concur_travel_request"
+      ],
+      "scenarios": [
+        "expense-review",
+        "cost-control",
+        "audit-support"
+      ]
+    },
+    "kyriba": {
+      "type": "http",
+      "url": "https://{company}.kyriba.com/api/v1",
+      "description": "Kyriba Treasury Management API — cash positions, forecasts, payment factory, FX exposure, hedge contracts, bank account management.",
+      "auth": {
+        "type": "oauth2",
+        "client_id": "${KYRIBA_CLIENT_ID}",
+        "client_secret": "${KYRIBA_CLIENT_SECRET}"
+      },
+      "tools": [
+        "kyriba_cash_positions",
+        "kyriba_bank_statements",
+        "kyriba_forecast",
+        "kyriba_payment_submit",
+        "kyriba_payment_status",
+        "kyriba_fx_exposure",
+        "kyriba_hedge_status",
+        "kyriba_bank_accounts"
+      ],
+      "scenarios": [
+        "treasury-management",
+        "treasury-advanced",
+        "fx-risk",
+        "cash-management",
+        "financing-structure"
+      ]
+    },
+    "bloomberg": {
+      "type": "stdio",
+      "command": "python -m bloomberg_connector",
+      "description": "Bloomberg Terminal API (TSOX) — FX rates, interest rates, bond analytics, equity quotes, credit ratings, market data. Primary market data connector.",
+      "auth": {
+        "type": "bloomberg-sso",
+        "server": "${BLOOMBERG_SERVER}"
+      },
+      "tools": [
+        "bloomberg_fx_rate",
+        "bloomberg_fx_calculate",
+        "bloomberg_bond_analytics",
+        "bloomberg_equity_quote",
+        "bloomberg_credit_rating",
+        "bloomberg_interest_rate"
+      ],
+      "scenarios": [
+        "fx-risk",
+        "financing-structure",
+        "treasury-management",
+        "m-and-a",
+        "esg-reporting",
+        "investment-management"
+      ]
+    },
+    "sharepoint": {
+      "type": "http",
+      "url": "https://{tenant}.sharepoint.com/_api/v2.0",
+      "description": "SharePoint REST API — finance document library, audit reports, board decks, compliance documents, integration with Microsoft 365.",
+      "auth": {
+        "type": "oauth2",
+        "provider": "microsoft-entra"
+      },
+      "tools": [
+        "sp_finance_library_read",
+        "sp_finance_library_write",
+        "sp_board_deck_read",
+        "sp_audit_report_read",
+        "sp_compliance_doc_read",
+        "sp_search"
+      ],
+      "scenarios": [
+        "board-reporting",
+        "audit-support",
+        "compliance-reporting",
+        "internal-control",
+        "m-and-a"
+      ]
+    },
+    "workday-hcm": {
+      "type": "http",
+      "url": "https://wd3-impl.workday.com/{tenant}/ccx/api/v1",
+      "description": "Workday HCM API — payroll, headcount, compensation, employee expenses. Primary HR cost data connector.",
+      "auth": {
+        "type": "oauth2",
+        "client_id": "${WORKDAY_CLIENT_ID}",
+        "client_secret": "${WORKDAY_CLIENT_SECRET}"
+      },
+      "tools": [
+        "workday_payroll_query",
+        "workday_headcount_export",
+        "workday_compensation_query",
+        "workday_employee_list",
+        "workday_expense_report"
+      ],
+      "scenarios": [
+        "payroll-accounting",
+        "budget-management",
+        "cost-control",
+        "tax-filing"
+      ]
+    },
+    "anaplan": {
+      "type": "http",
+      "url": "https://api.anaplan.com/2/0",
+      "description": "Anaplan REST API — enterprise planning, budget models, forecast uploads, driver-based planning. Primary planning and budgeting connector.",
+      "auth": {
+        "type": "api-key",
+        "key_env": "ANAPLAN_API_KEY"
+      },
+      "tools": [
+        "anaplan_model_list",
+        "anaplan_model_run",
+        "anaplan_data_export",
+        "anaplan_data_upload",
+        "anaplan_workspace_info"
+      ],
+      "scenarios": [
+        "budget-management",
+        "strategic-planning",
+        "capital-allocation",
+        "m-and-a"
+      ]
+    },
+    "refinitiv": {
+      "type": "http",
+      "url": "https://api.refinitiv.com",
+      "description": "Refinitiv Eikon API — company data, ESG scores, financial analytics, market data. Alternative to Bloomberg for ESG and company research.",
+      "auth": {
+        "type": "api-key",
+        "key_env": "REFINITIV_API_KEY"
+      },
+      "tools": [
+        "refinitiv_fx_rate",
+        "refinitiv_company_data",
+        "refinitiv_esg_score",
+        "refinitiv_financial_analytics"
+      ],
+      "scenarios": [
+        "esg-reporting",
+        "fx-risk",
+        "investment-management",
+        "m-and-a"
+      ]
+    },
+    "vertex-o": {
+      "type": "http",
+      "url": "https://{company}.vertexinc.com/api/mcp",
+      "description": "Vertex O Series API — indirect tax calculation (VAT, GST, sales tax), jurisdiction determination, tax rate lookup. Primary tax computation connector.",
+      "auth": {
+        "type": "api-key",
+        "key_env": "VERTEX_API_KEY"
+      },
+      "tools": [
+        "vertex_quote_request",
+        "vertex_jurisdiction_lookup",
+        "vertex_tax_rate_lookup",
+        "vertex_exemption_certificate"
+      ],
+      "scenarios": [
+        "tax-filing",
+        "expense-review"
+      ]
+    },
+    "taxdome": {
+      "type": "http",
+      "url": "https://api.taxdome.com/api/mcp",
+      "description": "TaxDome API — tax document management, client portals, filing status, document exchange with tax authorities. Primary tax document connector.",
+      "auth": {
+        "type": "api-key",
+        "key_env": "TAXDOME_API_KEY"
+      },
+      "tools": [
+        "taxdome_client_list",
+        "taxdome_document_upload",
+        "taxdome_filing_status",
+        "taxdome_engagement_read"
+      ],
+      "scenarios": [
+        "tax-filing"
+      ]
+    },
+    "tableau": {
+      "type": "http",
+      "url": "https://{tableau_server}/api/3.19",
+      "description": "Tableau Server REST API — workbook and view queries, data exports, metrics. Alternative BI connector when Power BI is not available.",
+      "auth": {
+        "type": "personal-access-token",
+        "token_env": "TABLEAU_TOKEN"
+      },
+      "tools": [
+        "tableau_views_query",
+        "tableau_workbook_export",
+        "tableau_datasource_query"
+      ],
+      "scenarios": [
+        "kpi-management",
+        "business-insight",
+        "board-reporting"
+      ]
+    },
+    "finereport": {
+      "type": "http",
+      "url": "https://{fineReport_server}/ReportServer",
+      "description": "帆软 FineReport API — Chinese domestic BI/reporting platform. Alternative to Power BI/Tableau for Chinese enterprises.",
+      "auth": {
+        "type": "basic",
+        "username": "${FINEREPORT_USER}",
+        "password": "${FINEREPORT_PASS}"
+      },
+      "tools": [
+        "finereport_query",
+        "finereport_export"
+      ],
+      "scenarios": [
+        "management-report",
+        "kpi-management",
+        "business-insight"
+      ]
+    }
+  }
+}
