@@ -272,6 +272,4 @@ MIT License — 可自由用于个人和商业项目。
 
 ## 作者
 
-**vivy-yi** · GitHub: [@vivy-yi](https://github.com/vivy-yi)
-
-> 本项目是 AI-Interview Studio（AI 采访型知识付费产品）的财务智能化模块。
+**vivy-yi** · GitHub: [@vivy-yi](https://github.com/vivyyi)
