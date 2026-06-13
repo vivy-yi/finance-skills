@@ -59,25 +59,40 @@ skills/
 | **GTreasury (Finastra)** | 司库 | `gt_cash_query`, `gt_fx_deals`, `gt_forecast` | 司库 |
 | **Bloomberg (TSOX)** | 外汇/市场数据 | `bloomberg_fx_rate`, `bloomberg_equity_quote`, `bloomberg_bond_analytics` | 外汇/融资 |
 | **Refinitiv Eikon** | 市场数据 | `refinitiv_fx_rate`, `refinitiv_company_data` | 外汇/ESG/投资 |
+| **Capital IQ (LSEG)** | M&A/股权数据 | `ciq_company_profile`, `ciq_transaction_search`, `ciq_valuation_metrics` | M&A/投资/可比分析 |
+| **Wind (万得)** | 国内金融数据 | `wind_equity_quote`, `wind_bond_analytics`, `wind_macro_data` | 国内M&A/投资/宏观 |
+| **AuditBoard** | SOX/内控管理 | `ab_control_testing`, `ab_finding_tracker`, `ab_audit_plan_status` | 内部控制/内部审计 |
 
 ### Layer 4：合规 & 文档层
 
-| 连接器 | 用途 | 核心工具 | 适用场景 |
+|| 连接器 | 用途 | 核心工具 | 适用场景 |
 |--------|------|---------|---------|
 | **SharePoint** | 财务文档库 | `sp_finance_library_read`, `sp_finance_library_write` | 所有文档管理 |
 | **Google Drive** | 财务文档库 | `gdrive_finance_folder_read`, `gdrive_finance_folder_write` | 所有文档管理 |
 | **Workday Adaptive Planning** | 预算/预测 | `workday_budget_query`, `workday_forecast_upload` | 预算管理 |
 | **Anaplan** | 企业计划 | `anaplan_model_run`, `anaplan_data_export` | 预算/资本配置 |
+| **Tagetik / CCH Tagetik** | 合并报表/关账 | `tagetik_close_status`, `tagetik_journal_entry`, `tagetik_intercompany_elimination` | 合并报表/财务关账 |
+| **Workiva** | SOX/披露管理 | `workiva_control_docs`, `workiva_disclosure_checklist`, `workiva_workflow_status` | SOX合规/监管披露 |
 
 ### Layer 5：HR & 税务（边界系统）
 
-| 连接器 | 用途 | 核心工具 | 适用场景 |
+|| 连接器 | 用途 | 核心工具 | 适用场景 |
 |--------|------|---------|---------|
 | **Workday HCM** | 薪酬/人力成本 | `workday_payroll_query`, `workday_headcount_export` | 薪酬/预算 |
 | **BambooHR** | 中小HR | `bamboohr_employee_list`, `bamboohr_time_off` | 薪酬 |
 | **ADP** | 薪资 | `adp_payroll_report`, `adp_tax_withholding` | 薪酬 |
 | **TaxDome** | 税务文档 | `taxdome_client_portal`, `taxdome_document_upload` | 税务 |
 | **Vertex / Sovos** | 税务计算 | `vertex_quote_request`, `vertex_jurisdiction_lookup` | 税务 |
+
+### Layer 5 扩展：ESG & 投资者关系
+
+|| 连接器 | 用途 | 核心工具 | 适用场景 |
+|--------|------|---------|---------|
+| **Sustainalytics** | ESG 评级/风险 | `sust_ESG_rating`, `sust_controversy_alert`, `sust_benchmark_rank` | ESG 报告/投资者关系 |
+| **MSCI ESG Research** | ESG 数据 | `msci_ESG_score`, `msci_ISSgovernance`, `msci_climate_metric` | ESG 报告/合规披露 |
+| **Bloomberg ESG** | ESG 数据集成 | `bloomberg_ESG_excel`, `bloomberg_ESG_score`, `bloomberg_sustainability_analytics` | ESG 报告/资本配置 |
+| **Diligent (Board Portal)** | 董事会管理 | `diligent_board_meeting`, `diligent_resolution_vote`, `diligent_document_signoff` | 投资者关系/董事会 |
+| **Q4 (IR Platform)** | 投资者关系 | `q4_earnings_calendar`, `q4_press_release`, `q4_analytics_dashboard` | 投资者关系 |
 
 ---
 

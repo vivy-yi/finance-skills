@@ -5,7 +5,7 @@
 [![Agent Framework](https://img.shields.io/badge/Agent-Hermes%20%7C%20OpenClaw-6366f1)](https://github.com/vivy-yi)
 [![Financial Scenes](https://img.shields.io/badge/Scenes-34-22d3ee)](./finance-skills/skills)
 [![Skill Files](https://img.shields.io/badge/Skills-152-4ade80)](./finance-skills/skills)
-[![MCP Connectors](https://img.shields.io/badge/Connectors-9-818cf8)](./finance-skills/CONNECTORS.md)
+[![MCP Connectors](https://img.shields.io/badge/Connectors-34-818cf8)](./finance-skills/CONNECTORS.md)
 [![License](https://img.shields.io/badge/License-MIT-green)](./LICENSE)
 
 ---
@@ -73,10 +73,11 @@ finance-skills/
 
 ```
 L1 ERP      SAP S/4HANA, Oracle EBS/Fusion, 用友 NC/U8, 金蝶 K3
-L2 BI       Power BI, Tableau
-L3 执行     BlackLine, SAP Concur, Kyriba, Bloomberg (TSOX)
-L4 合规     SharePoint / Google Drive
-L5 HR/税务  Workday HCM, Vertex / Sovos
+L2 BI       Power BI, Tableau, FineReport（帆软）
+L3 执行     BlackLine, SAP Concur, Expensify, Kyriba, GTreasury, Bloomberg TSOX, Refinitiv Eikon, Capital IQ, Wind, AuditBoard
+L4 合规     SharePoint, Google Drive, Workday Adaptive, Anaplan, Tagetik, CCH Tagetik, Workiva
+L5 HR/税务  Workday HCM, BambooHR, ADP, TaxDome, Vertex/Sovos
+L5 ESG/IR   Sustainalytics, MSCI ESG, Bloomberg ESG, Diligent, Q4
 ```
 
 ---
@@ -243,7 +244,7 @@ Finance Skills 与 [Greater China Legal](https://github.com/vivy-yi/Greater-Chin
 | Atomic Skill | 122 |
 | references 文件 | 102 |
 | 场景级配置文件（CLAUDE.md） | 34 |
-| Connector 类型 | 9（覆盖 L1~L5） |
+| Connector 类型 | 34（覆盖 L1~L5） |
 
 **质量状态**：所有 SKILL.md 文件 frontmatter ✅ + Examples ✅ 100%
 
