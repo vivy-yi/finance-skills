@@ -3,8 +3,8 @@
 > AI-Ready Financial Intelligence — 覆盖 CFO 全部工作域的智能体 Skill 体系
 
 [![Agent Framework](https://img.shields.io/badge/Agent-Hermes%20%7C%20OpenClaw-6366f1)](https://github.com/vivy-yi)
-[![Financial Scenes](https://img.shields.io/badge/Scenes-29-22d3ee)](./finance-skills/skills)
-[![Skill Files](https://img.shields.io/badge/Skills-131-4ade80)](./finance-skills/skills)
+[![Financial Scenes](https://img.shields.io/badge/Scenes-34-22d3ee)](./finance-skills/skills)
+[![Skill Files](https://img.shields.io/badge/Skills-152-4ade80)](./finance-skills/skills)
 [![MCP Connectors](https://img.shields.io/badge/Connectors-9-818cf8)](./finance-skills/CONNECTORS.md)
 [![License](https://img.shields.io/badge/License-MIT-green)](./LICENSE)
 
@@ -14,7 +14,7 @@
 
 Finance Skills 是一套面向 AI Agent 的**财务职能 Skill 系统**。每个 Skill 对应一个财务场景中的具体任务，Agent 加载后可以自主完成从数据读取、判断到输出的完整工作流。
 
-**解决问题**：让 AI Agent 具备财务专业能力——不是通用聊天，而是能真正执行"内控测试""KPI 根因分析""董事会材料准备"这类任务的财务助手。
+**解决问题**：让 AI Agent 具备财务专业能力——不是通用聊天，而是能真正执行"内控测试""KPI 根因分析""IFRS 9 信用风险评估"这类任务的财务助手。
 
 ---
 
@@ -29,11 +29,13 @@ finance-skills/
 │   ├── CONNECTORS.md              ← 9 个 Connector 定义（SAP/Power BI/BlackLine/Bloomberg...）
 │   ├── PROJECT_WORKSPACE.md       ← 项目空间规范
 │   ├── cold-start/                ← 首次配置向导
-│   └── skills/                    ← 29 个财务场景
+│   └── skills/                    ← 34 个财务场景
 │       ├── internal-control/
 │       ├── kpi-management/
 │       └── ...
-└── 财务职能体系全览.html           ← 最早设计稿（参考保留）
+└── diagram/
+    ├── FINANCE-SKILLS-OVERVIEW.html
+    └── 财务职能体系全览.html           ← 早期设计稿（参考保留）
 ```
 
 **三层架构**：
@@ -41,7 +43,7 @@ finance-skills/
 | Layer | 内容 | 状态 |
 |-------|------|------|
 | Layer 0 — Hub | 全局配置、冷启动、Connector 注册 | ✅ |
-| Layer 1 — 场景 | 29 个场景 × (references/ + skills/ + CLAUDE.md) | ✅ |
+| Layer 1 — 场景 | 34 个场景 × (references/ + skills/ + CLAUDE.md) | ✅ |
 | Layer 2 — 项目 | 项目空间（跨 Session 记住上下文） | ✅ 规范已定义 |
 
 ---
@@ -54,8 +56,8 @@ finance-skills/
 
 | 类型 | 定位 | 数量/场景 |
 |------|------|-----------|
-| **Master Skill** | 场景主技能，识别用户意图并分发给 Atomic | 1 个/场景（26 个） |
-| **Atomic Skill** | 原子技能，执行具体财务任务 | 4~6 个/场景（105 个） |
+| **Master Skill** | 场景主技能，识别用户意图并分发给 Atomic | 1 个/场景（30 个） |
+| **Atomic Skill** | 原子技能，执行具体财务任务 | 3~6 个/场景（122 个） |
 
 ### 场景知识后端
 
@@ -79,9 +81,9 @@ L5 HR/税务  Workday HCM, Vertex / Sovos
 
 ---
 
-## 场景全景（29 个）
+## 场景全景（34 个）
 
-### 战略级（A 级）— 13 个
+### 战略级（A 级）— 17 个
 
 | 场景 | 简介 | Atomic Skills |
 |------|------|--------------|
@@ -98,8 +100,12 @@ L5 HR/税务  Workday HCM, Vertex / Sovos
 | [investor-relations](./finance-skills/skills/investor-relations/) | 投资者关系管理 | 路演材料/业绩电话准备/信息披露/反馈追踪 |
 | [treasury-management](./finance-skills/skills/treasury-management/) | 司库管理与资金预测 | 日间头寸/资金预测/付款授权审批 |
 | [capital-allocation](./finance-skills/skills/capital-allocation/) | 资本配置与 ROIC 分析 | 投资评估/ROIC vs WACC 比较/情景分析/WACC 计算 |
+| [transfer-pricing-documentation](./finance-skills/skills/transfer-pricing-documentation/) | 转让定价文档与 BEPS 合规 | 主文档/本地文档/CbCR/APA 管理 |
+| [internal-audit](./finance-skills/skills/internal-audit/) | 内部审计管理全流程 | 年度审计计划/合规性审计/舞弊调查/整改跟踪 |
+| [project-valuation](./finance-skills/skills/project-valuation/) | 项目估值与投资决策 | NPV-IRR 计算/实物期权分析/可比参照/投资决策报告 |
+| [ifrs9-credit-risk](./finance-skills/skills/ifrs9-credit-risk/) | IFRS 9 信用风险敞口评估 | 三阶段分类/ECL 计量/宏观前瞻调整/监管披露 |
 
-### 运营级（B 级）— 16 个
+### 运营级（B 级）— 17 个
 
 | 场景 | 简介 | Atomic Skills |
 |------|------|--------------|
@@ -119,8 +125,9 @@ L5 HR/税务  Workday HCM, Vertex / Sovos
 | [payroll-accounting](./finance-skills/skills/payroll-accounting/) | 薪酬会计与社保 | 薪酬计算/社保审查/代扣代缴审查 |
 | [tax-filing](./finance-skills/skills/tax-filing/) | 税务申报（企税/增值税/个税） | 企税申报/增值税申报/个税申报/税务风险评估 |
 | [treasury-advanced](./finance-skills/skills/treasury-advanced/) | 高级司库（银行关系/流动性） | 银行关系评估/现金池配置/投资合规检查/LCR 评估 |
+| [working-capital](./finance-skills/skills/working-capital/) | 营运资本优化 | 现金转换周期/库存优化/应付账款策略/供应链金融 |
 
-> 注：3 个运营场景（budget-management、expense-review、month-end-close）无 Master Skill，为纯 Atomic 编排。
+> 注：部分运营场景（budget-management、expense-review、month-end-close 等）为纯 Atomic 编排，无 Master Skill。
 
 ---
 
@@ -137,7 +144,7 @@ ln -s /path/to/finance-skills/finance-skills ~/.hermes/skills/finance
 
 ### 2. 首次配置（冷启动）
 
-```bash
+```
 /hermes
 > /finance:cold-start
 ```
@@ -198,7 +205,6 @@ version: "1.0.0"
 
 ## Examples
 > 用户说"...", 调用本技能
-> 用户说"...", 调用本技能
 
 ## 加载上下文
 首次使用时读取 `../../CLAUDE.md` 获取场景级配置
@@ -215,7 +221,7 @@ Finance Skills 与 [Greater China Legal](https://github.com/vivy-yi/Greater-Chin
 
 | 维度 | Greater China Legal | Finance Skills |
 |------|---------------------|----------------|
-| 场景数 | 12 个法律域 | 29 个财务场景 |
+| 场景数 | 12 个法律域 | 34 个财务场景 |
 | 架构 | Layer 0 Hub + Layer 1 域 + Layer 2 项目 | Layer 0 Hub + Layer 1 场景 + Layer 2 项目 |
 | 知识后端 | 判断框架 + 数据源清单 + 查询路径 | 判断框架 + 数据源清单 + 查询路径 |
 | Connector | Westlaw / 企查查 / MCP Server | SAP / Power BI / BlackLine / Bloomberg |
@@ -229,14 +235,14 @@ Finance Skills 与 [Greater China Legal](https://github.com/vivy-yi/Greater-Chin
 
 | 指标 | 数量 |
 |------|------|
-| 场景总数 | 29 |
-| 战略级（A 级） | 13 |
-| 运营级（B 级） | 16 |
-| Skill 文件（SKILL.md） | 131 |
-| Master Skill | 26 |
-| Atomic Skill | 105 |
-| references 文件 | 87 |
-| 场景级配置文件（CLAUDE.md） | 29 |
+| 场景总数 | 34 |
+| 战略级（A 级） | 17 |
+| 运营级（B 级） | 17 |
+| Skill 文件（SKILL.md） | 152 |
+| Master Skill | 30 |
+| Atomic Skill | 122 |
+| references 文件 | 102 |
+| 场景级配置文件（CLAUDE.md） | 34 |
 | Connector 类型 | 9（覆盖 L1~L5） |
 
 **质量状态**：所有 SKILL.md 文件 frontmatter ✅ + Examples ✅ 100%
