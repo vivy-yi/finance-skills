@@ -37,7 +37,7 @@ finance-skills/
 - 跨场景共享（90% 的财务操作都需要 SAP 的 GL/AR/AP）
 - 凭证统一管理（`~/.config/finance-skills/credentials/`）
 
-详见 [CONNECTORS.md](../CONNECTORS.md)。
+详见 [CONNECTORS.md](CONNECTORS.md)。
 
 ---
 
@@ -177,4 +177,4 @@ SAP_CLIENT_SECRET=xxx
 | 工具调用超时 | 网络/服务不可用 | fallback 模式降级到 CSV |
 | 工具名与 SKILL.md 不一致 | tools 列表漏配 | 在 .mcp.json tools 数组里加 |
 
-详见 [CONNECTORS.md](../CONNECTORS.md) Layer 分层说明。
+详见 [CONNECTORS.md](CONNECTORS.md) Layer 分层说明。
