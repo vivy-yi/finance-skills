@@ -1,0 +1,49 @@
+{
+  "mcpServers": {
+    "tax-einvoicing": {
+      "type": "http",
+      "url": "https://etax.gov.example.com/api/mcp",
+      "description": "电子税务局 connector — VAT/企业所得税申报数据回执、专票勾选确认、税务事项通知书",
+      "auth": {
+        "type": "oauth2",
+        "client_id": "${TAX_CLIENT_ID}",
+        "client_secret": "${TAX_CLIENT_SECRET}",
+        "scope": "vat.declare cit.declare invoice.match"
+      },
+      "tools": [
+        "tax_vat_declare",
+        "tax_cit_quarterly",
+        "tax_invoice_match",
+        "tax_notice_list",
+        "tax_payment_receipt"
+      ],
+      "scenarios": ["tax-filing"],
+      "fallback": {
+        "type": "manual_csv",
+        "path": "skills/tax-filing/fixtures/declarations/",
+        "format": "vat_monthly_YYYYMM.csv"
+      }
+    },
+    "fa-assets-system": {
+      "type": "http",
+      "url": "https://fa.internal.company.com/api/mcp",
+      "description": "本地固定资产系统 — 资产卡片/折旧/处置（ERP 之外的辅助台账）",
+      "auth": {
+        "type": "api_key",
+        "header": "X-API-Key",
+        "value": "${FA_API_KEY}"
+      },
+      "tools": [
+        "fa_card_query",
+        "fa_depreciation_run",
+        "fa_disposal_record"
+      ],
+      "scenarios": ["tax-filing", "fixed-assets"],
+      "fallback": {
+        "type": "erp",
+        "connector": "sap_s4hana",
+        "tools": ["sap_fixed_assets"]
+      }
+    }
+  }
+}

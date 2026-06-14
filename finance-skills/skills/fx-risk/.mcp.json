@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "bloomberg-tsux": {
+      "type": "stdio",
+      "command": "npx @finance-mcp/bloomberg-connector",
+      "description": "Bloomberg Terminal connector — 实时外汇/利率/大宗商品/股票（FX/treasury 域核心数据源）",
+      "auth": {
+        "type": "bpipe",
+        "host": "${BBG_HOST}",
+        "port": 8194
+      },
+      "tools": [
+        "bloomberg_fx_rate",
+        "bloomberg_fx_forward",
+        "bloomberg_interest_curve",
+        "bloomberg_equity_quote",
+        "bloomberg_credit_spread",
+        "bloomberg_commodity_price"
+      ],
+      "scenarios": ["fx-risk", "treasury-advanced", "treasury-management"],
+      "fallback": {
+        "type": "manual_api",
+        "docs": "https://data.bloomberg.com/developer/",
+        "rate_limit": "5000 requests/day"
+      }
+    },
+    "refinitiv-eikon": {
+      "type": "stdio",
+      "command": "npx @finance-mcp/refinitiv-connector",
+      "description": "Refinitiv Eikon — 备用市场数据源（Bloomberg 不可用时 fallback）",
+      "auth": {
+        "type": "app_key",
+        "key": "${REFINITIV_APP_KEY}"
+      },
+      "tools": [
+        "refinitiv_fx_rate",
+        "refinitiv_company_data",
+        "refinitiv_esg_score"
+      ],
+      "scenarios": ["fx-risk", "esg-reporting"]
+    }
+  }
+}

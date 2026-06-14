@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "kyriba-treasury": {
+      "type": "http",
+      "url": "https://kyriba.company.com/api/mcp",
+      "description": "Kyriba 司库系统 — 现金池 / 流动性预测 / 银行对账（treasury 域执行层）",
+      "auth": {
+        "type": "oauth2",
+        "client_id": "${KYRIBA_CLIENT_ID}",
+        "client_secret": "${KYRIBA_CLIENT_SECRET}"
+      },
+      "tools": [
+        "kyriba_cash_positions",
+        "kyriba_forecast",
+        "kyriba_bank_statements",
+        "kyriba_liquidity_lcr",
+        "kyriba_fx_deals",
+        "kyriba_intercompany_loan"
+      ],
+      "scenarios": ["treasury-management", "treasury-advanced", "fx-risk"]
+    },
+    "auditboard-grc": {
+      "type": "http",
+      "url": "https://auditboard.company.com/api/mcp",
+      "description": "AuditBoard — SOX 控制测试 / 缺陷跟踪 / 审计计划管理",
+      "auth": {
+        "type": "api_key",
+        "header": "Authorization",
+        "value": "Bearer ${AUDITBOARD_TOKEN}"
+      },
+      "tools": [
+        "ab_control_testing",
+        "ab_finding_tracker",
+        "ab_audit_plan_status",
+        "ab_sox_walkthrough"
+      ],
+      "scenarios": ["internal-audit", "internal-control", "audit-support"]
+    }
+  }
+}
