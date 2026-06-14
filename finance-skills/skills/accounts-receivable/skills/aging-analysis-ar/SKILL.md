@@ -9,7 +9,7 @@ argument-hint: "[截止日期 YYYY-MM-DD] [分析维度：全公司/指定客户
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

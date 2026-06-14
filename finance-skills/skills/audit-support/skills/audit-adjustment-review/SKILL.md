@@ -9,7 +9,7 @@ argument-hint: "[审计期间 YYYY年度] [审核阶段：初步调整/最终调
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

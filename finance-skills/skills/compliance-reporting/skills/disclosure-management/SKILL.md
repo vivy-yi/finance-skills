@@ -9,7 +9,7 @@ argument-hint: "[监控期间 YYYY年MM月] [披露类型：关联交易/担保/
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

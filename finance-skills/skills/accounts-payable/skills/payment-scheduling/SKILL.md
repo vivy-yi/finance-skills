@@ -9,7 +9,7 @@ argument-hint: "[付款日期 YYYY-MM-DD] [付款类型：周付/月付/紧急] 
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

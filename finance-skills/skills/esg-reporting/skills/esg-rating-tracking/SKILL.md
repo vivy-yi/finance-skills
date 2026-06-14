@@ -9,7 +9,7 @@ argument-hint: "[评级机构：MSCI/S&P/CDP] [当前评级] [目标评级]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: low
-...
+---
 
 ## 加载上下文
 

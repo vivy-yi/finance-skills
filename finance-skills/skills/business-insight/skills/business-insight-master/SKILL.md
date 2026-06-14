@@ -1,12 +1,16 @@
 ---
 name: business-insight-master
 description: >
-  商业洞察场景主技能，整合专题分析、洞察生成、预警误报处理与分析质量控制。
+  商业洞察主流程 — 整合专题分析、洞察生成、预警误报处理与分析质量控制。
+  适用情形：月度/季度业务复盘或专题分析时执行，整合 trend-analysis、
+  survey-analysis、insight-generation 和 insight-validation，
+  输出经过验证的商业洞察报告。
+  核心：数据收集 → 模式识别 → 洞察生成 → 交叉验证 → 质量门控。
 argument-hint: "[分析主题] [数据范围] [紧迫程度：高/中/低] [是否需要生成洞察]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 # 商业洞察 Master Skill
 

@@ -9,7 +9,7 @@ argument-hint: "[交易名称] [交割日期] [整合期限] [主要整合领域
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

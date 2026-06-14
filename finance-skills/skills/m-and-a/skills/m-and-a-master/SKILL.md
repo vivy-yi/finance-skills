@@ -1,12 +1,16 @@
 ---
 name: m-and-a-master
 description: >
-  M&A并购场景主技能，整合尽调支持、估值分析、交易结构建议与整合追踪。
+  M&A 并购主流程 — 整合尽调支持、估值分析、交易结构建议与整合追踪。
+  适用情形：M&A 项目全周期（意向/尽调/谈判/交割/整合）执行时启动，
+  整合 financial-due-diligence、dcf-modeling、comparable-analysis、valuation-integration
+  和 integration-roadmap，输出完整的并购决策与执行包。
+  核心：尽调风险识别 → 估值锚定 → 交易架构 → 整合落地。
 argument-hint: "[M&A阶段：尽调/估值/交易结构/整合] [目标公司类型] [项目紧急度]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # M&A 并购 Master Skill
 

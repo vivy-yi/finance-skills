@@ -1,12 +1,16 @@
 ---
 name: esg-reporting-master
 description: >
-  ESG报告场景主技能，整合环境/社会/治理数据收集、ESG评级管理、重大事件应对与报告编制。
+  ESG 报告主流程 — 整合环境/社会/治理数据收集、ESG 评级管理、重大事件应对与报告编制。
+  适用情形：年度 ESG 报告披露或评级机构（MSCI/Sustainalytics）评估时执行，
+  整合 esg-data-integration、esg-materiality-assessment、esg-rating-tracking 和 esg-reporting，
+  输出符合监管要求的 ESG 报告。
+  核心：数据完整性 → 重要性评估 → 评级管理 → 合规披露。
 argument-hint: "[ESG数据类型：E/S/G] [报告用途：披露/评级/内部] [数据期间]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 # ESG 报告 Master Skill
 

@@ -1,12 +1,16 @@
 ---
 name: investor-relations-master
 description: >
-  投资者关系场景主技能，整合信息披露管理、分析师关系维护、投资者沟通与重大事件IR应对。
+  投资者关系主流程 — 整合信息披露管理、分析师关系维护、投资者沟通与重大事件 IR 应对。
+  适用情形：定期业绩发布、路演筹备、分析师问询回复或重大资本市场事件时执行，
+  整合 ir-disclosure-management、earnings-call-preparation、roadshow-material-preparation
+  和 investor-feedback-tracking，输出符合监管披露要求的 IR 沟通材料。
+  核心：信息披露合规 → 投资者沟通 → 反馈跟踪 → 关系维护。
 argument-hint: "[IR任务类型：信息披露/路演/分析师沟通/业绩发布] [时间节点]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 投资者关系 Master Skill
 

@@ -9,7 +9,7 @@ argument-hint: "[分析对象：收入/成本/利润/运营指标] [分析期间
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: low
-...
+---
 
 ## 加载上下文
 

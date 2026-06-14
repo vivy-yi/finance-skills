@@ -9,7 +9,7 @@ argument-hint: "[评估日期 YYYY-MM-DD] [评估类型：月度例行/风险触
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

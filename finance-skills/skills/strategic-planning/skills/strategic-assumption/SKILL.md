@@ -9,7 +9,7 @@ argument-hint: "[战略规划周期：3年/5年] [假设更新时间] [基准假
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

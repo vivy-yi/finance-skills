@@ -9,7 +9,7 @@ argument-hint: "[申报月份 YYYY-MM] [纳税人类型：一般纳税人/小规
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

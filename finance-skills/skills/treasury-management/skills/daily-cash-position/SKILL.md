@@ -9,7 +9,7 @@ argument-hint: "[日期 YYYY-MM-DD] [核查类型：全账户/指定账户]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

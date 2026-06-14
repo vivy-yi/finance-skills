@@ -9,7 +9,7 @@ argument-hint: "[发票号码] [供应商名称] [采购订单号] [发票金额
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

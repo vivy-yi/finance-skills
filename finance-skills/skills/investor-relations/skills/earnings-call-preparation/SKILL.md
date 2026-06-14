@@ -9,7 +9,7 @@ argument-hint: "[业绩期间 YYYY-QX] [发布类型：季报/年报] [业绩表
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

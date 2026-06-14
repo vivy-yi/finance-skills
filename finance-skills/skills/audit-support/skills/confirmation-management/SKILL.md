@@ -9,7 +9,7 @@ argument-hint: "[函证期间 YYYY年度] [函证类型：银行函证/往来函
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

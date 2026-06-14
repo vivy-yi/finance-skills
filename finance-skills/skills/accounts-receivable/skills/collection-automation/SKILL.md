@@ -9,7 +9,7 @@ argument-hint: "[催款批次：本周/指定客户] [截止日期 YYYY-MM-DD]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

@@ -9,7 +9,7 @@ argument-hint: "[分析期间 YYYY] [分析范围：公司/业务单元] [对比
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

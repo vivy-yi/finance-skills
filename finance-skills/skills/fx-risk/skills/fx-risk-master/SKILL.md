@@ -1,12 +1,16 @@
 ---
 name: fx-risk-master
 description: >
-  外汇风险场景主技能，整合外汇敞口管理、对冲策略执行、敞口超限处理与模型失效应对。
+  外汇风险管理主流程 — 整合外汇敞口管理、对冲策略执行、敞口超限处理与模型失效应对。
+  适用情形：外汇敞口监控周期（每日/每周）或重大汇率波动事件触发时执行，
+  整合 fx-exposure-calculation、fx-forecast-analysis、fx-hedging-strategy 和 fx-deal-execution，
+  输出完整的外汇风险管理报告与对冲执行清单。
+  核心：敞口测算 → 情景分析 → 对冲策略 → 执行监控 → 模型校准。
 argument-hint: "[外汇敞口类型：交易/换算/经济] [涉及币种] [敞口金额] [对冲状态]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 外汇风险 Master Skill
 

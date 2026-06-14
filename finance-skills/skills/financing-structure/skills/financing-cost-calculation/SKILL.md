@@ -9,7 +9,7 @@ argument-hint: "[融资场景：新融资/再融资/WACC更新] [融资规模] [
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

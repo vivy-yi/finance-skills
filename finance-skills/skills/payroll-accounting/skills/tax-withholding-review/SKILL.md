@@ -9,7 +9,7 @@ argument-hint: "[申报期间 YYYY年MM月] [申报类型：正常/更正申报]
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

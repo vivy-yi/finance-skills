@@ -9,7 +9,7 @@ argument-hint: "[预测期间 X天/X周/X月] [预测截止日期 YYYY-MM-DD]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

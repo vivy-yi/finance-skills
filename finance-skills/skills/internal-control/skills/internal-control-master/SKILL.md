@@ -1,12 +1,16 @@
 ---
 name: internal-control-master
 description: >
-  内控设计场景主技能，整合SOX内控框架设计、审批矩阵管理、控制测试与缺陷管理。
+  内控设计主流程 — 整合 SOX 内控框架设计、审批矩阵管理、控制测试与缺陷管理。
+  适用情形：年度内控体系更新、新业务流程上线或内控缺陷整改时执行，
+  整合 sox-control-design、approval-matrix、control-testing 和 control-deficiency，
+  输出完整的内控设计与测试报告。
+  核心：风险识别 → 控制设计 → 审批授权 → 测试验证 → 缺陷整改。
 argument-hint: "[内控场景：SOX合规/审批设计/缺陷整改/测试] [涉及流程/科目]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 内控设计 Master Skill
 

@@ -9,7 +9,7 @@ argument-hint: "[会议日期 YYYY-MM-DD] [审计范围：财报/内控/合规] 
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

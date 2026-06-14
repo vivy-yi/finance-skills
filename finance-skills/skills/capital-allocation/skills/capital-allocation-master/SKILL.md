@@ -1,12 +1,16 @@
 ---
 name: capital-allocation-master
 description: >
-  资本配置场景主技能，整合投资评估、资本预算、WACC测算与股东回报管理。
+  资本配置主流程 — 整合投资评估、资本预算、WACC 测算与股东回报管理。
+  适用情形：年度资本预算编制或重大投资项目评估时执行，整合 investment-evaluation、
+  wacc-calculation、roic-vs-wacc-comparison 和 scenario-analysis，
+  输出完整的资本配置决策包。
+  核心：投资回报测算 → 风险加权 → 资本成本对照 → 配置优化。
 argument-hint: "[决策类型：投资评估/资本预算/股东回报/WACC] [相关金额] [决策阶段]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 资本配置 Master Skill
 

@@ -1,12 +1,16 @@
 ---
 name: management-report-master
 description: >
-  管理报告场景主技能，整合月度财务报告编制、业务分析整合、指标预警处理与管理报告发布。
+  管理报告主流程 — 整合月度财务报告编制、业务分析整合、指标预警处理与管理报告发布。
+  适用情形：月度/季度管理报告编制（每月固定时间）时执行，
+  整合 financial-report-generation、management-commentary-writing、metric-alert-handling
+  和 management-report-publishing，输出完整的管理报告包。
+  核心：财务数据 → 业务解读 → 指标预警 → 报告编排 → 分发归档。
 argument-hint: "[报告期间 YYYY-MM] [报告类型：月度/季度/年度] [是否有预警数据]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 # 管理报告 Master Skill
 

@@ -9,7 +9,7 @@ argument-hint: "[报告年度 YYYY] [披露框架：GRI/SASB/TCFD] [报告范围
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

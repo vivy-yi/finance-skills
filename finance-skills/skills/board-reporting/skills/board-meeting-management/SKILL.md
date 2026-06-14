@@ -9,7 +9,7 @@ argument-hint: "[会议类型：董事会/审计委员会/战略委员会/薪酬
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

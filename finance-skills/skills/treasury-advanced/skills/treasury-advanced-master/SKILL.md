@@ -1,7 +1,11 @@
 ---
 name: treasury-advanced-master
 description: >
-  高级司库场景主技能，整合现金池管理、流动性风险管控（LCR/NSFR）、投资管理与银行关系维护。
+  高级司库主流程 — 整合现金池管理、流动性风险管控（LCR/NSFR）、投资合规与银行关系维护。
+  适用情形：日终流动性监控、季度监管报送或重大资金架构调整时执行，
+  整合 cash-pool-configuration、lcr-assessment、investment-compliance-check
+  和 bank-relationship-assessment，输出符合监管要求的司库管理报告。
+  核心：资金归集 → 流动性计量 → 监管合规 → 渠道维护。
 argument-hint: "[司库任务类型：现金池/LCR/投资/银行关系] [涉及账户/金额]"
 last_reviewed: 2026-06
 version: 1.0.0

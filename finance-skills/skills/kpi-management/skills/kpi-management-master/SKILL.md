@@ -1,12 +1,16 @@
 ---
 name: kpi-management-master
 description: >
-  KPI管理场景主技能，整合KPI目标设定、数据追踪、预警处理与根因分析。
+  KPI 管理主流程 — 整合 KPI 目标设定、数据追踪、预警处理与根因分析。
+  适用情形：月度/季度经营分析会或 KPI 异常预警触发时执行，
+  整合 kpi-target-setting、kpi-data-tracking、kpi-alert-handling 和 kpi-root-cause-analysis，
+  输出完整的 KPI 监控与归因报告。
+  核心：目标设定 → 数据采集 → 异常预警 → 根因归因 → 改善跟踪。
 argument-hint: "[KPI操作类型：目标设定/追踪/预警处理/根因分析] [涉及部门/指标]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 # KPI 管理 Master Skill
 

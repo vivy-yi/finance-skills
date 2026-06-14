@@ -9,7 +9,7 @@ argument-hint: "[供应商名称] [付款金额] [收款账户] [付款条款]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

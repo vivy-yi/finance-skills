@@ -9,7 +9,7 @@ argument-hint: "[超预算科目] [预算金额] [实际金额] [差异金额] [
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

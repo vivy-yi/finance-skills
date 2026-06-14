@@ -9,7 +9,7 @@ argument-hint: "[薪资期间 YYYY年MM月] [员工范围：全体/指定部门]
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

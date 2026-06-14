@@ -9,7 +9,7 @@ argument-hint: "[控制编号列表] [测试期间 YYYY] [测试类型：抽样/
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

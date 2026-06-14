@@ -9,7 +9,7 @@ argument-hint: "[报告类型：月度/季度/年度] [报告期间 YYYY年MM月
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

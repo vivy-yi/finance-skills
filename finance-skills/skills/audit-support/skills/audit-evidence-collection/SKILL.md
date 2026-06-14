@@ -9,7 +9,7 @@ argument-hint: "[审计类型：年度审计/专项审计] [审计期间 YYYY年
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

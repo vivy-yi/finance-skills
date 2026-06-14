@@ -9,13 +9,13 @@ argument-hint: "[报告周期：每日/每周/每月] [截止日期 YYYY-MM-DD]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 
 **首次使用时：** 读取 `../../CLAUDE.md` 获取场景级配置（账户清单/预警阈值/审批权限）。
 
-...
+---
 
 # /treasury-management-master — 资金管理主流程
 

@@ -1,12 +1,16 @@
 ---
 name: board-reporting-master
 description: >
-  board-reporting场景主技能，整合Board Deck编制、审计委员会支持、董事会议程管理与重大事项汇报。
+  董事会汇报主流程 — 整合 Board Deck 编制、审计委员会支持、董事会议程管理与重大事项汇报。
+  适用情形：年度/季度董事会与审计委员会会议前执行，整合 board-deck-preparation、
+  audit-committee-support、board-meeting-management 和 board-material-distribution，
+  输出完整的董事会汇报材料包。
+  核心：会议准备 → 材料编制 → 委员会协同 → 重大事项汇报。
 argument-hint: "[会议类型：Board/审计委员会/专门委员会] [报告期间] [是否紧急] [主要议题]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 董事会汇报 Master Skill
 

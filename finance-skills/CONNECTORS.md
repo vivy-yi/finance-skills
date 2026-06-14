@@ -65,7 +65,7 @@ skills/
 
 ### Layer 4：合规 & 文档层
 
-|| 连接器 | 用途 | 核心工具 | 适用场景 |
+| 连接器 | 用途 | 核心工具 | 适用场景 |
 |--------|------|---------|---------|
 | **SharePoint** | 财务文档库 | `sp_finance_library_read`, `sp_finance_library_write` | 所有文档管理 |
 | **Google Drive** | 财务文档库 | `gdrive_finance_folder_read`, `gdrive_finance_folder_write` | 所有文档管理 |
@@ -76,7 +76,7 @@ skills/
 
 ### Layer 5：HR & 税务（边界系统）
 
-|| 连接器 | 用途 | 核心工具 | 适用场景 |
+| 连接器 | 用途 | 核心工具 | 适用场景 |
 |--------|------|---------|---------|
 | **Workday HCM** | 薪酬/人力成本 | `workday_payroll_query`, `workday_headcount_export` | 薪酬/预算 |
 | **BambooHR** | 中小HR | `bamboohr_employee_list`, `bamboohr_time_off` | 薪酬 |
@@ -86,7 +86,7 @@ skills/
 
 ### Layer 5 扩展：ESG & 投资者关系
 
-|| 连接器 | 用途 | 核心工具 | 适用场景 |
+| 连接器 | 用途 | 核心工具 | 适用场景 |
 |--------|------|---------|---------|
 | **Sustainalytics** | ESG 评级/风险 | `sust_ESG_rating`, `sust_controversy_alert`, `sust_benchmark_rank` | ESG 报告/投资者关系 |
 | **MSCI ESG Research** | ESG 数据 | `msci_ESG_score`, `msci_ISSgovernance`, `msci_climate_metric` | ESG 报告/合规披露 |

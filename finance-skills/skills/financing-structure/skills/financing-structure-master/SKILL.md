@@ -1,12 +1,16 @@
 ---
 name: financing-structure-master
 description: >
-  融资结构场景主技能，整合融资成本分析、信用评级管理、融资渠道维护与融资方案设计。
+  融资结构主流程 — 整合融资成本分析、信用评级管理、融资渠道维护与融资方案设计。
+  适用情形：年度融资规划或重大融资决策（银团/债券/股权融资）时执行，
+  整合 financing-cost-calculation、bank-relationship-management、
+  covenant-compliance-monitoring 和 debt-restructuring，输出完整的融资方案。
+  核心：成本测算 → 渠道维护 → 契约合规 → 结构优化。
 argument-hint: "[融资需求类型：新增/置换/优化] [融资金额] [期限要求] [是否有评级]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 融资结构 Master Skill
 

@@ -9,7 +9,7 @@ argument-hint: "[审批场景：费用报销/采购付款/借款担保/合同签
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 ## 加载上下文
 

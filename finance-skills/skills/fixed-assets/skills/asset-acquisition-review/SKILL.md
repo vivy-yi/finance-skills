@@ -9,7 +9,7 @@ argument-hint: "[资产编号/采购单号] [资产名称] [采购金额 XXX万]
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

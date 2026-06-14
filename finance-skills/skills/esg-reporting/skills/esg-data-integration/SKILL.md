@@ -9,7 +9,7 @@ argument-hint: "[报告周期 YYYY] [框架标准：GRI/SASB/TCFD/CSRD] [已收�
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: low
-...
+---
 
 ## 加载上下文
 

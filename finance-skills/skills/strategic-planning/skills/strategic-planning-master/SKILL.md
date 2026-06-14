@@ -1,12 +1,16 @@
 ---
 name: strategic-planning-master
 description: >
-  战略规划场景主技能，整合战略假设管理、目标设定、执行追踪与战略调整。
+  战略规划主流程 — 整合战略假设管理、目标设定、执行追踪与战略调整。
+  适用情形：年度战略规划制定、季度战略复盘或战略重大调整时执行，
+  整合 strategic-assumption、strategic-objective-setting、strategy-execution-tracking
+  和 strategic-risk-assessment，输出完整的战略规划与执行报告。
+  核心：环境扫描 → 假设建立 → 目标设定 → 执行追踪 → 动态调整。
 argument-hint: "[战略任务类型：规划/假设变更/执行追踪/调整] [规划周期：3年/5年]"
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: high
-...
+---
 
 # 战略规划 Master Skill
 

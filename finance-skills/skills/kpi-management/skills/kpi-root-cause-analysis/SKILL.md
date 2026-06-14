@@ -9,7 +9,7 @@ argument-hint: "[KPI名称] [目标值 X] [实际值 X] [未达标期间 YYYY-MM
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

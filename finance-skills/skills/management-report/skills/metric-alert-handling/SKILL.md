@@ -9,7 +9,7 @@ argument-hint: "[KPI/指标名称] [预警类型：跌破阈值/异常波动/趋
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

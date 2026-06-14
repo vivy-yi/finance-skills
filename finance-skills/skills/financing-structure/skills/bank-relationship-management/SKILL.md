@@ -9,7 +9,7 @@ argument-hint: "[评估范围：全部分行/主要合作行] [评估期间 YYYY
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

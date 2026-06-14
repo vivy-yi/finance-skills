@@ -9,7 +9,7 @@ argument-hint: "[报销单号] [申请人] [报销金额] [费用类型] [提交
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 

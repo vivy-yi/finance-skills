@@ -9,7 +9,7 @@ argument-hint: "[截止日期] [币种对：USD/CNY/EUR] [敞口类型：全部/
 last_reviewed: 2026-06
 version: 1.0.0
 risk_level: medium
-...
+---
 
 ## 加载上下文
 
