@@ -5,3 +5,6 @@ __pycache__/
 node_modules/
 .env
 *.log
+
+# Diagram 目录下未跟踪的实验性图示（不属于 finance-skills 仓库范围）
+diagram/skill-agent-capability-framework.html
